@@ -16,7 +16,7 @@ class FrameArray():
             self.parent.derived.append(self)
 
     def __repr__(self):
-        return "<fc: {}>".format(self.eval().shape)        
+        return "<FrameArray>"
 
     def __array_ufunc__(self, ufunc, method, *inputs, **kwargs):
         """Given a function accepting some arguments, returning a updating

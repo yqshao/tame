@@ -24,12 +24,12 @@ def cond_jacf(dumps, jacf_out, cond_out,
         a_idx: anion atom indices.
     """
     import numpy as np
-    from mdppp.op import tacf
+    from mdppp.op import tacf, tavg
     from mdppp.io.lammps import load_multi_dumps
     # from mdppp.units import get_unit, ps, e    
     # Processing input
-    n_segment = seg_dt//dt
-    n_cache = max_dt//dt    
+    n_segment = int(seg_dt*1e3/dt)
+    n_cache = int(max_dt/dt)
     data = load_multi_dumps(dumps)
     if c_idx is None:
         assert c_type is not None, 'Must specify cation type or indices'
@@ -40,7 +40,9 @@ def cond_jacf(dumps, jacf_out, cond_out,
     # Operations
     J_c = data['speed'][c_idx]
     J_a = data['speed'][a_idx]
-    V = data['cell']**3
+    J = J_c - J_a
+    V = data['cell'][0]*data['cell'][1]*data['cell'][2]
+
     # Running
     count = 0
     result = []
@@ -49,24 +51,26 @@ def cond_jacf(dumps, jacf_out, cond_out,
         jacf = tacf(J, n_cache)
         vavg = tavg(V)
 
-        if not data.run(n_segment):
+        try:
+            data.run(n_segment)
+        except:
             print('Reached end of trajectory')
             np.savetxt(f'{cond_out}.dat', result)
             print(f'G-K conductivity saved to {cond_out}.dat')
             break
 
         JACF = jacf.eval()
-        V = vavg.eval()
+        VAVG = vavg.eval()
         cond = np.trapz(JACF, dx=dt) #* unit.speed**2*ps/unit.volume
         result.append(cond)
 
-        print(f'Segment {count} ({data.count} frames)'
+        print(f'Segment {count} ({data.count+1} frames)'
               f': cond={cond:.2e}[S/m]', end='')
-        if jacf_log:
-            TIME = np.arange(0, cache_size)*dt
+        if jacf_out:
+            TIME = np.arange(0, n_cache)*dt
             outfile = f'{jacf_out}_{count}.dat'
-            np.savetxt(f'{outfile}', [TIME, JACF])
-            print(f', JACF saved to "{outfile}."')
+            np.savetxt(f'{outfile}', np.transpose([TIME, JACF]))
+            print(f', JACF saved to "{outfile}.')
         else:
             print('.')
 

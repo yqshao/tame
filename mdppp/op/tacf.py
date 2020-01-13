@@ -27,7 +27,7 @@ class TACF(FrameArray):
             self.count += 1
 
     def eval(self):
-        return self.cumsum/self.count    
+        return np.divide(self.cumsum, self.count)
 
 
 def tacf(var, cache_size):

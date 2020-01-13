@@ -29,4 +29,4 @@ def tavg(var):
         A TAVG Operation
     """
     return TAVG(var)
-    
+ 
