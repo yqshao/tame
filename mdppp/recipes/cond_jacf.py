@@ -24,7 +24,7 @@ def cond_jacf(dumps, jacf_out, cond_out,
         a_idx: anion atom indices.
     """
     import numpy as np
-    from mdppp.op import tacf, tavg
+    from mdppp.ops import tacf, tavg
     from mdppp.io.lammps import load_multi_dumps
     # from mdppp.units import get_unit, ps, e    
     # Processing input
@@ -76,7 +76,7 @@ def cond_jacf(dumps, jacf_out, cond_out,
 
 
 def set_parser(parser):
-    from mdppp.recipe.utils import TypeDefaultFormat
+    from mdppp.recipes.utils import TypeDefaultFormat
     import argparse    
     parser.formatter_class=TypeDefaultFormat
     parser.description = 'Computing conductity using the '\

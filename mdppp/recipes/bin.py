@@ -1,7 +1,7 @@
 import argparse
 
 def main():
-    from mdppp.recipe.cond_jacf import set_parser
+    from mdppp.recipes.cond_jacf import set_parser
     parser = argparse.ArgumentParser(prog='mdppp')
     subps = parser.add_subparsers(dest='command', title='subcommands', required=True)
     subp = subps.add_parser('cond', help='Conductivity Analysess')

@@ -9,6 +9,6 @@ setup(name='mdppp',
       license='BSD',
       packages=find_packages(),
       entry_points={
-          'console_scripts': ['mdppp=mdppp.recipe.parser:main']
+          'console_scripts': ['mdppp=mdppp.recipes.bin:main']
       }
 )

@@ -22,8 +22,10 @@ named variables which can be loaded by a generator. Children of a
 
 ``FrameArray`` is a subclass of numpy ndarray. It accepts usual
 operations of numpy arrays (simple arithmetic operations, numpy
-ufuncs), with the difference that the arrays are automatically updated
-when the parent ``FrameData`` updates.
+ufuncs, etc.; **NOTE** ``np.expand_dims`` is **not** usable yet, but
+one can use ``array[np.newaxis,:]`` instead), with the difference that
+the arrays are automatically updated when the parent ``FrameData``
+updates.
 
 ``FrameArray`` can be extened to take different operations during
 frame update, for instance, a time correlation function which requires

@@ -71,16 +71,16 @@ class FrameArray():
     def __pow__(self, other):
         return np.power(self, other)
 
-    def mean(self, **kwargs):
-        return self.__array_ufunc__(np.mean, None, (self), **kwargs)
-
     def sum(self, **kwargs):
         return self.__array_ufunc__(np.sum, None, (self), **kwargs)
 
+    def mean(self, **kwargs):
+        return self.__array_ufunc__(np.mean, None, (self), **kwargs)
+
     def update(self):
-        args = [arg.eval() if type(arg) == FrameArray
+        args = [arg.eval() if isinstance(arg, FrameArray)
                 else arg for arg in self.fn_args]
-        kwargs = {k: arg.eval() if type(arg) == FrameArray
+        kwargs = {k: arg.eval() if isinstance(arg, FrameArray)
                    else arg for k, arg in self.fn_kwargs.items()}
         self.val = self.fn(*args, **kwargs)
         
