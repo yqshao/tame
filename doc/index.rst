@@ -1,10 +1,9 @@
-=================================================
-MDPPP: Molecular Dynamics Post-Processing Program
-=================================================
 .. include:: introduction.rst
-
+	     
 .. toctree::
    :maxdepth: 1
 
-   tutorial.rst   
+   tutorial.rst
+   recipes.rst
+   contributing.rst
    

@@ -1,3 +1,6 @@
+Introduction
+============
+
 mdppp is a library written for processing molecular dynamisc
 trajectories. It attemps to provide a easy way to analyze long
 trajectories by introducing the ``FrameArray``: a numpy-array-like
