@@ -5,7 +5,7 @@ from mdppp import FrameArray
 class TCACHE(FrameArray):
     """Time     """
     def __init__(self, var, cache_size, default_val=np.nan):
-        assert type(var) == FrameArray
+        assert isinstance(var, FrameArray)
         self.var = var
         var.parent.derived.append(self)
         self.parent = var.parent       
@@ -26,8 +26,8 @@ class TAVG(FrameArray):
     """
     
     def __init__(self, var, dropnan='all'):
-        assert type(var) == FrameArray
-        var.parent.derived.append(self)        
+        assert isinstance(var, FrameArray)
+        var.parent.derived.append(self)
         self.var = var
         self.parent = var.parent
         self.dropnan = dropnan        

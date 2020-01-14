@@ -1,18 +1,23 @@
 """Operations for structure manipulations"""
+import numpy as np
+from mdppp import FrameArray
 
-class UnwrappedCoord():
+class UnwrappedCoord(FrameArray):
     def __init__(self, coord, cell):
+        assert isinstance(coord, FrameArray)
+        coord.parent.derived.append(self)
+        self.parent = coord.parent        
         self.coord = coord
         self.cell = cell
-        self.old_coord = coord.eval()
-        self.val = self.old_coord
+        self.val = coord.eval()
         
-    def update():
-        self.old_coord = self.val
+    def update(self):
+        old_coord = self.val
+        cell = self.cell.eval()
         new_coord = self.coord.eval()
-        self.val = old_coord + np.rint((new_coord-self.old_coord)/cell)*cell
+        self.val = new_coord + np.rint((old_coord-new_coord)/cell)*cell
     
-    def eval():
+    def eval(self):
         return self.val
         
 def unwrap(coord, cell):
