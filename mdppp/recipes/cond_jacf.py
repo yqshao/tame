@@ -1,7 +1,7 @@
 """This recipe computes the ionic conductivity using the Green-Kubo relation."""
 
 def cond_jacf(dumps, jacf_out, cond_out,
-              unit, dt, max_dt, seg_dt,
+              unit, dt, max_dt, seg_dt, T,
               c_type, a_type, c_idx, a_idx):
     """Computing conductity using the Green-Kubo relation and the
     current-current autocorrelation function
@@ -18,6 +18,7 @@ def cond_jacf(dumps, jacf_out, cond_out,
         dt: timestep of the trajectory [ps].
         max_dt: max correlation time to compute [ps].
         seg_dt: segment time to split the trajectory [ns].
+        T: temperature in [K].
         c_type: cation element type (if None, must specify c_idx).
         a_type: anion element type (if None, must specify a_idx).
         c_idx: cation atom indices.
@@ -26,7 +27,8 @@ def cond_jacf(dumps, jacf_out, cond_out,
     import numpy as np
     from mdppp.ops import tacf, tavg
     from mdppp.io.lammps import load_multi_dumps
-    # from mdppp.units import get_unit, ps, e    
+    from mdppp.units import get_unit, ps, kB, e
+    units = get_unit(unit)
     # Processing input
     n_segment = int(seg_dt*1e3/dt)
     n_cache = int(max_dt/dt)
@@ -40,7 +42,7 @@ def cond_jacf(dumps, jacf_out, cond_out,
     # Operations
     J_c = data['speed'][c_idx]
     J_a = data['speed'][a_idx]
-    J = J_c - J_a
+    J = np.sum(J_c - J_a, axis=0, keepdims=True)
     V = data['cell'][0]*data['cell'][1]*data['cell'][2]
 
     # Running
@@ -61,7 +63,8 @@ def cond_jacf(dumps, jacf_out, cond_out,
 
         JACF = jacf.eval()
         VAVG = vavg.eval()
-        cond = np.trapz(JACF, dx=dt) #* unit.speed**2*ps/unit.volume
+        cond = 1/(3*kB*T*VAVG)*np.trapz(JACF, dx=dt)\
+            /units.length**3 * e**2 * units.velocity**2 * ps
         result.append(cond)
 
         print(f'Segment {count} ({data.count+1} frames)'
@@ -95,6 +98,8 @@ def set_parser(parser):
                         help='correlation time in [ps]')
     parser.add_argument('--seg-dt', type=float, default=5.0,
                         help='trajectory segment length in [ns]')
+    parser.add_argument('--temperature', type=float, default=273.15,
+                        help='temperature in [K]')        
     parser.add_argument('--c-type', type=int, default=None,
                         help='cation atom type')
     parser.add_argument('--a-type', type=int, default=None,
@@ -105,7 +110,7 @@ def set_parser(parser):
                         help='anion indices')       
     parser.set_defaults(func=lambda args: cond_jacf(
         args.dumps, args.jacf_out, args.cond_out,
-        args.unit, args.dt, args.max_dt, args.seg_dt,
+        args.unit, args.dt, args.max_dt, args.seg_dt, args.temperature,
         args.c_type, args.a_type, args.c_idx, args.a_idx))
 
 
