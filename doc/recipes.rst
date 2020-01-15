@@ -1,5 +1,5 @@
-Avaiable recipes
-================
+Recipes
+=======
 
 The following is a list of available recipes. type ``command -h`` to see further explanation.
 
