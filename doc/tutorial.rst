@@ -14,9 +14,9 @@ which will be elaborated below.
 
 .. code-block:: python
 		
-   from mdppp.io import load_multi_dump
+   from mdppp.io.lammps import load_multi_dumps
    from mdppp.ops import tacf
-   data = load_multi_dump(['prod.dump'])
+   data = load_multi_dumps(['prod.dump'])
    print(data, data['speed'])
 
 FrameArray
