@@ -17,7 +17,7 @@ Installation
 ------------
 
 .. code-block:: bash
-		
+
    pip install git+https://github.com/yqshao/mdppp.git
 
 Using a recipe
