@@ -6,17 +6,15 @@ def _dump_generator(fname, resort=False):
     f = open(fname)
     [next(f) for _ in range(3)]
     natoms = int(f.readline())
-    next(f)
-
     def get_cell(line): return float(line.split()[1]) - float(line.split()[0])
-    cell = np.array([get_cell(f.readline()) for i in range(3)])
-
     count = 0
     while True:
         line = f.readline()
         if line == '':
             break
-        if line.startswith('ITEM: ATOMS'):
+        if line.startswith('ITEM: BOX'):
+            cell = np.array([get_cell(f.readline()) for i in range(3)])
+            f.readline()
             count += 1
             coord, speed, elems = [], [], []
             for i in range(natoms):
