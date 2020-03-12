@@ -58,14 +58,14 @@ def tavg(var, drop_nan='all'):
     """Time Average Value"""
     return TAVG(var, drop_nan)
 
-def tacf(var, cache_size, dropnan='all'):
+def tacf(var, cache_size, dropnan='partial'):
     var_cache = tcache(var, cache_size)
     acf = var_cache * var[np.newaxis, :]
     acf = np.mean(np.sum(acf, axis=2), axis=1)
     tacf = tavg(acf, dropnan)
     return tacf
     
-def tmsd(var, cache_size, dropnan='all'):
+def tmsd(var, cache_size, dropnan='partial'):
     var_cache = tcache(var, cache_size)
     dis = var_cache - var[np.newaxis, :]
     msd = np.mean(np.sum(dis**2, axis=2), axis=1)
