@@ -2,6 +2,6 @@
 import argparse
 
 class TypeDefaultFormat(
-        argparse.ArgumentDefaultsHelpFormatter,
+        argparse.RawTextHelpFormatter,
         argparse.MetavarTypeHelpFormatter):
     pass
