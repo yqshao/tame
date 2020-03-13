@@ -23,6 +23,8 @@ class FrameArray():
         function that the parent could call to update the derived
         varible.
         """
+        if method:
+            ufunc = getattr(ufunc, method)
         new_child = FrameArray(self.parent,
                                fn=ufunc, fn_args=inputs, fn_kwargs=kwargs)
         new_child.update()
