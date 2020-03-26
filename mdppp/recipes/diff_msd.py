@@ -1,6 +1,6 @@
 def diff_dcf(dumps, diff_out, corr_out,
               unit, dt, max_dt, seg_dt, fit_min, fit_max, T,
-              tags):
+              tags, loose):
     """Computing conductity using the Green-Kubo relation and the
     polarization mean squared displacement function
 
@@ -73,7 +73,10 @@ def diff_dcf(dumps, diff_out, corr_out,
             # "Memory" of in/out
             in_cache = tcache(dists[(t1, t2)]<=r_c, n_cache)
             # Criterion for in/out
-            cut_in = np.logical_and.accumulate(in_cache, 0)
+            if loose:
+                cut_in = np.logical_and.accumulate(in_cache, 0)
+            else:
+                cut_in = np.logical_and.reduce(in_cache, 0, keepdims=True)
             cut_out =  np.logical_not(cut_in)
             if t1==t2:
                 cut_in = cut_in * (1-np.eye(len(idx_i)))
@@ -108,7 +111,6 @@ def diff_dcf(dumps, diff_out, corr_out,
         diffs = [1/6*linear_fit(TIME, CORR, fit_min, fit_max)[0]
                  for CORR in CORRS]
         result.append(diffs)
-
         print(f'Segment {count} ({data.count+1} frames)'+
               ''.join([f', {label}={diff:.2e}'
                         for label, diff in zip(labels,diffs)]), end=' [Ang^2/ps]')
@@ -127,7 +129,12 @@ def set_parser(parser):
   self diffusion coefficients (D^s) can be specified using their type
   disctinct diffusion coefficients (D^d) is specified using e.g. 3,3
 
-  you can further split the D^d by a cutoff radius using e.g. 3,3:C3.5"""
+  you can further split the D^d by a cutoff radius using e.g. 3,3:C3.5
+
+  the cutoff criterion can be toggled with the --loose flag. The default
+  behavior identifies pairs as within cutoff for those who are inside the cufoff
+  during the entire max-dt, with the loose flag it counts those who are inside
+  the cutoff during t_0 to t_0+dt (a varying group for different dt)"""
 
     parser.add_argument('dumps', metavar='dump', type=str, nargs='+',
                         help='dump files')
@@ -151,12 +158,14 @@ def set_parser(parser):
                         help='temperature in [K]')
     parser.add_argument('--tags', type=str, nargs='+', default=[],
                         help='types of diffusion coefficient to calculate')
+    parser.add_argument('--loose', default=False, action='store_true',
+                        help='swith to loose mode (only check until dt)')
 
     parser.set_defaults(func=lambda args: diff_dcf(
         args.dumps, args.diff_out, args.corr_out,
         args.unit, args.dt, args.max_dt, args.seg_dt,
         args.fit_min, args.fit_max, args.temperature,
-        args.tags))
+        args.tags, args.loose))
 
 
 def main():
