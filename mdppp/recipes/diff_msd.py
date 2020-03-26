@@ -41,6 +41,7 @@ def diff_dcf(dumps, diff_out, corr_out,
         return all_dr[t]
 
     dists = {}
+    cell = data['cell'][None, None,:]
     for tag in tags:
         if ',' not in tag: # just simple self diffusion
             corr = np.mean(np.sum(get_dr(int(tag))**2, axis=2), axis=1)
@@ -66,7 +67,7 @@ def diff_dcf(dumps, diff_out, corr_out,
             r_i = coord[idx_i]; r_j = coord[idx_j]
             if (t1, t2) not in dists:
                 r_ij = r_i[:,None,:] - r_j[None, :, :]
-                r_ij = r_ij - np.rint(r_ij/data['cell'][None,None,:])
+                r_ij = r_ij - np.rint(r_ij/cell)*cell
                 dist = np.sqrt(np.sum(r_ij**2, axis=2))
                 dists[(t1, t2)] = dist
             # "Memory" of in/out
