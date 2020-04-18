@@ -54,9 +54,9 @@ def tcache(var, cache_size, **kwargs):
     """Cache of previous cache_size frames of data"""    
     return TCACHE(var, cache_size, **kwargs)
 
-def tavg(var, drop_nan='all'):
+def tavg(var, dropnan='partial'):
     """Time Average Value"""
-    return TAVG(var, drop_nan)
+    return TAVG(var, dropnan)
 
 def tacf(var, cache_size, dropnan='partial'):
     var_cache = tcache(var, cache_size)
