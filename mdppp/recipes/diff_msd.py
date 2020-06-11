@@ -56,7 +56,7 @@ def diff_dcf(dumps, diff_out, corr_out,
                     dr_i = np.mean(get_dr(t1), axis=1)
                     dr_j = np.sum(get_dr(t2), axis=1)
                     corr = np.sum(dr_i*dr_j, axis=1)
-                corrs[tag] = tavg(corr)
+                corrs[tag] = tavg(corr)*2
             elif ':C' in tag: # Handel the cutoffs here
                 ts, r_c = tag.split(':C')
                 r_c = float(r_c)
@@ -84,8 +84,8 @@ def diff_dcf(dumps, diff_out, corr_out,
                 dr_i = get_dr(t1); dr_j = get_dr(t2)
                 dr_j_in  = np.sum(dr_j[:,None,:,:]* cut_in[:,:,:,None],axis=2)
                 dr_j_out = np.sum(dr_j[:,None,:,:]*cut_out[:,:,:,None],axis=2)
-                corrs[tag+f'_in'] = tavg(np.mean(np.sum(dr_i*dr_j_in, axis=2), axis=1))
-                corrs[tag+f'_out'] = tavg(np.mean(np.sum(dr_i*dr_j_out, axis=2), axis=1))
+                corrs[tag+f'_in'] = tavg(np.mean(np.sum(dr_i*dr_j_in, axis=2), axis=1))*2
+                corrs[tag+f'_out'] = tavg(np.mean(np.sum(dr_i*dr_j_out, axis=2), axis=1))*2
             else:
                 raise NotImplementedError(f"We can not handel the tag {tag}, sorry dude.")
         return corrs
