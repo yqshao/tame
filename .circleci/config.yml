@@ -22,14 +22,13 @@ jobs:
       - restore_cache:
           keys:
             - venv-{{ checksum "setup.py" }}-{{ checksum ".circleci/config.yml" }}
-            - venv-
       - run:
           name: Install dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install --upgrade pip            
-            pip install sphinx
+            pip install mkdocs mkdocstrings pygments mkdocs-material
             pip install -e .
             pip uninstall -y mdppp
       - save_cache:

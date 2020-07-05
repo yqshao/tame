@@ -1,0 +1,21 @@
+# About TAME
+
+TAME (Trajectory Analysis Made Easy) was built by Yunqi Shao at Uppsala
+Unversity.
+
+The program was inspired by Matti Hellström's (unpublished) analysis code for
+analyzing MD trajectories, which has a much flexible way to define groups of
+atoms, and made available a wide range of stuctural and dynamic properties (life
+time of hydrogen bonds, diffusion of reactive species like hydroxyl ions, to
+name a few). Despite its high performance and flexibility, the syntax was a bit
+tricky to grasp and the program was written in C++, both made it hard to extend
+the code.
+
+Such difficulties hindered us when we start develop new gauges to the MD
+trajectories, for instance, the cutoff-separated distinct diffusion
+coefficients. We therefore developed a new set of tools such that the analysis
+can be written in the more accessible language of numpy arrays. The result was
+TAME.
+
+The first prototype of the code was developed by Yunqi Shao, with the help from
+Supho Phunnarungsi and Harish Gudla.

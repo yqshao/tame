@@ -1,0 +1,38 @@
+site_name: TAME Documentation
+site_url: https://yqshao.github.io/mdppp/tame
+nav:
+  - Home: index.md
+  - Contributing: contributing.md
+  - About: about.md
+  - Tutorials:
+    - Overview: tutorial/overview.md
+    - Basic concepts: tutorial/basics.md
+    - Write a recipe: tutorial/recipe.md
+  - Recipes:
+    - tame diff: recipe/diff.md
+    - tame cond: recipe/cond.md
+    - tame struct: recipe/struct.md
+  - API Reference:
+    - tame.core: api/core.md
+    - tame.time: api/time.md
+    - tame.io: api/io.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          rendering:
+            show_root_heading: true
+            show_source: false
+            show_root_full_path: false
+theme:
+  name: material
+  features:
+    - tabs
+markdown_extensions:
+  - codehilite
+  - pymdownx.arithmatex
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+extra_css:
+  - css/extra.css

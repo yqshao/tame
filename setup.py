@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
-setup(name='mdppp',
+setup(name='tame',
       version='dev',
-      description='Molecular Dynamics Post-Processing Programm',
+      description='Trajectory Analysis Made Easy',
       url='https://github.com/yqshao/mdppp',
       author='Yunqi Shao',
       author_email='yunqi_shao@yahoo.com',

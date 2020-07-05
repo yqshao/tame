@@ -51,14 +51,52 @@ class TAVG(FrameArray):
         return self.cumsum/self.count
 
 def tcache(var, cache_size, **kwargs):
-    """Cache of previous cache_size frames of data"""    
+    """Cache of previous cache_size frames of data
+
+    Args:
+        var (FrameArray): variable to be averaged
+        cache_size (int): maximum $dt$ to calculate, in frames
+
+    Returns:
+        FrameArray: cached trajectory with shape [cache_size, input_shape]
+    """
     return TCACHE(var, cache_size, **kwargs)
 
 def tavg(var, dropnan='partial'):
-    """Time Average Value"""
+    """Time average value:
+
+    $$\langle \mathbf{var} \\rangle$$
+
+    `tavg` ignores `nan` values when computing the average. When dropnan is
+    'all', the entire `var` is discards if there is a nan inside. When dropnan
+    is 'partial', the only `nan` entries are ignored.
+
+
+    Args:
+        var (FrameArray): variable to be averaged
+        dropnan (str): 'all' or 'partial'
+
+    Returns:
+        FrameArray: time average of `var`
+    """
     return TAVG(var, dropnan)
 
 def tacf(var, cache_size, dropnan='partial'):
+    """Time autocorrelation function:
+
+    $$\langle \mathbf{var}_i(0) \cdot \mathbf{var}_i(dt) \\rangle_{i,t}$$
+
+    `tacf` assumes that var has dimension `[n_particle, n_dim]`. The particle
+    dimension will be averaged.
+
+    Args:
+        var (FrameArray): variable with shape `[n_particle, n_dim]`
+        cache_size (int): maximum $dt$ to calculate, in frames
+        dropnan (str): 'all' or 'partial'
+
+    Returns:
+        FrameArray: Autocorrelation function with shape `[cache_size]`
+    """
     var_cache = tcache(var, cache_size)
     acf = var_cache * var[np.newaxis, :]
     acf = np.mean(np.sum(acf, axis=2), axis=1)
@@ -66,6 +104,21 @@ def tacf(var, cache_size, dropnan='partial'):
     return tacf
     
 def tmsd(var, cache_size, dropnan='partial'):
+    """Mean squred displacement function:
+
+    $$\langle (\mathbf{var}_i(dt) - \mathbf{var}_i(0))^2 \\rangle_{i,t}$$
+
+    `tmsd` assumes that var has dimension `[n_particle, n_dim]`. The particle
+    dimension will be reduced by averaging.
+
+    Args:
+        var (FrameArray): variable with shape `[n_particle, n_dim]`
+        cache_size (int): maximum $dt$ to calculate, in frames
+        dropnan (str): 'all' or 'partial'
+
+    Returns:
+        FrameArray: Autocorrelation function with shape `[cache_size]`
+    """
     var_cache = tcache(var, cache_size)
     dis = var_cache - var[np.newaxis, :]
     msd = np.mean(np.sum(dis**2, axis=2), axis=1)

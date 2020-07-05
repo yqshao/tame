@@ -1,18 +1,11 @@
-Contributing
-============
+# Writing a recipe
 
-Contribution of recipes and operations are welcome. It is recommanded
-to contact the main developer (Yunqi) before contributing to see if
-the functionality fits the scope of the library.
-
-Checklist before contributing a recipe
---------------------------------------
+## Recipes in TAME
 
 A recipe is essentially a python program that runs specific tasks.
 Below is how a typical recipe looks like:
 
-.. code-block:: python
-
+```Python
    def actual_fn(arg1, arg2=1, ...):
        do some actual work
 
@@ -31,19 +24,19 @@ Below is how a typical recipe looks like:
 
    if __name__ == "__main__":
        main()
-       
-The recipes will be gathered as subcommands of ``mdppp``. To do so,
-each mdppp recipes needs a ``set_parser`` function which sets the
+```
+
+The recipes will be gathered as subcommands of `tame`. To do so,
+each mdppp recipes needs a `set_parser` function which sets the
 command line arguments and documentations (see one of the recipes for
-an idea). ``set_parser`` will be called both when the reciepe is used
+an idea). `set_parser` will be called both when the reciepe is used
 as a standalone script or as a subcommnad.
+
+## Checklist before contributing a recipe
 
 Here is an additional checklist for implementing a new recipe.
 
 - place the recipe in a sub-package of recipes.
-- include a unit test for the recipe if possible.
 - test the recipe with the latest mdppp code
 - document the method used and cite appropriate reference in docstring
   of the recipe.
-
-
