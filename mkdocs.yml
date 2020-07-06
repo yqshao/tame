@@ -9,13 +9,17 @@ nav:
     - Basic concepts: tutorial/basics.md
     - Write a recipe: tutorial/recipe.md
   - Recipes:
+    - Overview: recipe/overview.md
     - tame diff: recipe/diff.md
     - tame cond: recipe/cond.md
     - tame struct: recipe/struct.md
+    - tame restime: recipe/restime.md
   - API Reference:
     - tame.core: api/core.md
     - tame.time: api/time.md
-    - tame.io: api/io.md
+    - tame.io:
+      - tame.io.loader: api/loader.md
+      - tame.io.writer: api/writer.md
 plugins:
   - search
   - mkdocstrings:
@@ -30,8 +34,10 @@ theme:
   features:
     - tabs
 markdown_extensions:
+  - admonition
   - codehilite
   - pymdownx.arithmatex
+  - pymdownx.tasklist
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 extra_css:
