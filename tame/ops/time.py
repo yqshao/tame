@@ -1,6 +1,6 @@
 """ Time related functions"""
 import numpy as np
-from mdppp import FrameArray
+from tame import FrameArray
 
 class TCACHE(FrameArray):
     """Time     """

@@ -1,4 +1,4 @@
-# Trajectory Analysis Made Easy
+# TAME: Trajectory Analysis Made Easy
 
 ## Introduction
 
@@ -19,6 +19,6 @@ cation and anion species:
 
 
 ``` shell
-   mdppp cond jacf prod.dump --c-type 1 --a-type 2
+   tame cond jacf prod.dump --c-type 1 --a-type 2
 ```
 

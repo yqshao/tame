@@ -63,5 +63,5 @@ def load_multi_dumps(flist, resort=False):
         - elems: element array, size=(natoms)
         - cell: cell array, size=(3, 3)
     """
-    from mdppp import FrameData
+    from tame import FrameData
     return FrameData(_multi_dump_generator(flist))

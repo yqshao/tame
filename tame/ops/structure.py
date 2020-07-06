@@ -1,6 +1,6 @@
 """Operations for structure manipulations"""
 import numpy as np
-from mdppp import FrameArray
+from tame import FrameArray
 
 class UnwrappedCoord(FrameArray):
     def __init__(self, coord, cell):

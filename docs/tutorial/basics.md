@@ -9,7 +9,7 @@ can be loaded from one or a ordered list of trajectory files from MD programs,
 e.g:
     
 ```Python
-from mdppp.io import load_traj
+from tame.io import load_traj
 traj = load_traj('prod.dump')
 ```
 

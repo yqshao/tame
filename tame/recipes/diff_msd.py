@@ -19,10 +19,10 @@ def diff_dcf(dumps, diff_out, corr_out,
         a_idx: anion atom indices.
     """
     import numpy as np
-    from mdppp.fit import linear_fit
-    from mdppp.ops import tmsd, tcache, tavg, unwrap
-    from mdppp.io.lammps import load_multi_dumps
-    from mdppp.units import get_unit, ps, kB, e
+    from tame.fit import linear_fit
+    from tame.ops import tmsd, tcache, tavg, unwrap
+    from tame.io.lammps import load_multi_dumps
+    from tame.units import get_unit, ps, kB, e
     units = get_unit(unit)
     # Processing input
     n_segment = int(seg_dt*1e3/dt)
@@ -124,7 +124,7 @@ def diff_dcf(dumps, diff_out, corr_out,
             print('.')
 
 def set_parser(parser):
-    from mdppp.recipes.utils import TypeDefaultFormat
+    from tame.recipes.utils import TypeDefaultFormat
     import argparse
     parser.formatter_class = TypeDefaultFormat
     parser.description = """Computing various diffusion coefficients

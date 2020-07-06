@@ -1,4 +1,4 @@
-from mdppp.core.framearray import FrameArray
+from .framearray import FrameArray
 
 class FrameData():
     def __init__(self, generator):

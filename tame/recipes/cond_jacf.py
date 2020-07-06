@@ -1,8 +1,14 @@
-def cond_pmsd(dumps, pmsd_out, cond_out,
-              unit, dt, max_dt, seg_dt, fit_min, fit_max, T,
+def cond_jacf(dumps, jacf_out, cond_out,
+              unit, dt, max_dt, seg_dt, T,
               c_type, a_type, c_idx, a_idx):
     """Computing conductity using the Green-Kubo relation and the
-    polarization mean squared displacement function
+    current-current autocorrelation function
+
+    Unit conversion:
+        JACF integral is given in speed*2 * ps.
+        V is given in lammps volume unit.
+        T is given in K.
+        Returning conductivity in SI [S/m].
 
     Args:
         dumps: list lammps dump files.
@@ -10,8 +16,6 @@ def cond_pmsd(dumps, pmsd_out, cond_out,
         dt: timestep of the trajectory [ps].
         max_dt: max correlation time to compute [ps].
         seg_dt: segment time to split the trajectory [ns].
-        fit_min: 'minimal time for msd fit [ps]'.
-        fit_max: 'maximal time for msd fit [ps]'.
         T: temperature in [K].
         c_type: cation element type (if None, must specify c_idx).
         a_type: anion element type (if None, must specify a_idx).
@@ -19,10 +23,9 @@ def cond_pmsd(dumps, pmsd_out, cond_out,
         a_idx: anion atom indices.
     """
     import numpy as np
-    from mdppp.fit import linear_fit    
-    from mdppp.ops import tmsd, tavg, unwrap
-    from mdppp.io.lammps import load_multi_dumps
-    from mdppp.units import get_unit, ps, kB, e
+    from tame.ops import tacf, tavg
+    from tame.io.lammps import load_multi_dumps
+    from tame.units import get_unit, ps, kB, e
     units = get_unit(unit)
     # Processing input
     n_segment = int(seg_dt*1e3/dt)
@@ -35,9 +38,9 @@ def cond_pmsd(dumps, pmsd_out, cond_out,
         assert a_type is not None, 'Must specify anion type or indices'
         a_idx = data['elems'] == a_type
     # Operations
-    P_c = unwrap(data['coord'][c_idx], data['cell'])
-    P_a = unwrap(data['coord'][a_idx], data['cell'])
-    P = np.sum(P_c - P_a, axis=0, keepdims=True)
+    J_c = data['speed'][c_idx]
+    J_a = data['speed'][a_idx]
+    J = np.sum(J_c - J_a, axis=0, keepdims=True)
     V = data['cell'][0]*data['cell'][1]*data['cell'][2]
 
     # Running
@@ -45,7 +48,7 @@ def cond_pmsd(dumps, pmsd_out, cond_out,
     result = []
     while True:
         count += 1
-        pmsd = tmsd(P, n_cache)
+        jacf = tacf(J, n_cache)
         vavg = tavg(V)
 
         try:
@@ -56,35 +59,34 @@ def cond_pmsd(dumps, pmsd_out, cond_out,
             print(f'Conductivity saved to {cond_out}.dat')
             break
 
-        PMSD = pmsd.eval()
+        JACF = jacf.eval()
         VAVG = vavg.eval()
-        TIME = np.arange(0, n_cache)*dt        
-        slope, _ = linear_fit(TIME, PMSD, fit_min, fit_max)
-        cond = 1/(6*kB*T*VAVG) * slope \
-            /units.length**3 * e**2 * units.length**2 / ps
+        cond = 1/(3*kB*T*VAVG)*np.trapz(JACF, dx=dt)\
+            /units.length**3 * e**2 * units.velocity**2 * ps
         result.append(cond)
-        
+
         print(f'Segment {count} ({data.count+1} frames)'
               f': cond={cond:.2e}[S/m]', end='')
-        if pmsd_out:
-            outfile = f'{pmsd_out}_{count}.dat'
-            np.savetxt(f'{outfile}', np.transpose([TIME, PMSD]))
-            print(f', PMSD saved to "{outfile}.')
+        if jacf_out:
+            TIME = np.arange(0, n_cache)*dt
+            outfile = f'{jacf_out}_{count}.dat'
+            np.savetxt(f'{outfile}', np.transpose([TIME, JACF]))
+            print(f', JACF saved to "{outfile}.')
         else:
             print('.')
 
 
 def set_parser(parser):
-    from mdppp.recipes.utils import TypeDefaultFormat
+    from tame.recipes.utils import TypeDefaultFormat
     import argparse    
     parser.formatter_class=TypeDefaultFormat
     parser.description = 'Computing conductity using the '\
                          'current-current autocorrelation function.'
     parser.add_argument('dumps', metavar='dump', type=str, nargs='+',
                         help='dump files')
-    parser.add_argument('--pmsd-out', type=str, default='pmsd',
-                        help='polarization MSD data output')
-    parser.add_argument('--cond-out', type=str, default='cond_pmsd',
+    parser.add_argument('--jacf-out', type=str, default='jacf',
+                        help='current autocorrelation data output')
+    parser.add_argument('--cond-out', type=str, default='cond_jacf',
                         help='conductivity data output')
     parser.add_argument('--unit', type=str, default='real',
                         help='dump file unit')
@@ -94,10 +96,6 @@ def set_parser(parser):
                         help='correlation time in [ps]')
     parser.add_argument('--seg-dt', type=float, default=5.0,
                         help='trajectory segment length in [ns]')
-    parser.add_argument('--fit-min', type=float, default=5.0,
-                        help='minimal time for msd fit [ps]')
-    parser.add_argument('--fit-max', type=float, default=20.0,
-                        help='maximal time for msd fit [ps]')    
     parser.add_argument('--temperature', type=float, default=273.15,
                         help='temperature in [K]')        
     parser.add_argument('--c-type', type=int, default=None,
@@ -108,10 +106,9 @@ def set_parser(parser):
                         help='cation indices')
     parser.add_argument('--a-idx', type=int, default=None,
                         help='anion indices')       
-    parser.set_defaults(func=lambda args: cond_pmsd(
-        args.dumps, args.pmsd_out, args.cond_out,
-        args.unit, args.dt, args.max_dt, args.seg_dt,
-        args.fit_min, args.fit_max, args.temperature,
+    parser.set_defaults(func=lambda args: cond_jacf(
+        args.dumps, args.jacf_out, args.cond_out,
+        args.unit, args.dt, args.max_dt, args.seg_dt, args.temperature,
         args.c_type, args.a_type, args.c_idx, args.a_idx))
 
 

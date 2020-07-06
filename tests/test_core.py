@@ -1,8 +1,8 @@
 import numpy as np
 
 def test_framedata():
-    from mdppp import FrameData
-    from mdppp.ops import CumMean
+    from tame import FrameData
+    from tame.ops import CumMean
     
     data = np.array([1,2,3,4,5])
     iterator = iter(data)

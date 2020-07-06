@@ -1,6 +1,6 @@
 # Time-dependent functions
 
-::: mdppp.ops.time.tcache
-::: mdppp.ops.time.tavg
-::: mdppp.ops.time.tacf
-::: mdppp.ops.time.tmsd
+::: tame.ops.time.tcache
+::: tame.ops.time.tavg
+::: tame.ops.time.tacf
+::: tame.ops.time.tmsd

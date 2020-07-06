@@ -7,7 +7,7 @@ through the corresponding Einstein relation:
 
 Both methods are implemented in TAME, which are accessed through the `mdc` (mean
  displacement correlation) and `vcf` (velocity correlation function) subcommand
- of `mdppp diff`.
+ of `tame diff`.
 
 It's worth noting that the computation from diffusion coefficients, especially
 from the MDC, is subject to the time range used in fitting/integration.
@@ -18,7 +18,7 @@ Therefore, both recipes save the correlations in `--corr-out` output file.
 TAME can compute multiple (self/distinct) diffusion coefficient at once. The
 diffusion coefficients are selected with the `--tags` flag. Self diffusion
 coefficients are selected with the atom types, distinct diffusion coefficients
-are selected with `type1,type2`. For instance, `mdppp diff mdc 1 2 1,2` computes
+are selected with `type1,type2`. For instance, `tame diff mdc 1 2 1,2` computes
 the self diffusion of type `1`, type `2` and the distinct diffusion coefficient
 between `1` and `2`.
 

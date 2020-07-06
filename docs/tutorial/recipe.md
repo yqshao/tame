@@ -27,7 +27,7 @@ Below is how a typical recipe looks like:
 ```
 
 The recipes will be gathered as subcommands of `tame`. To do so,
-each mdppp recipes needs a `set_parser` function which sets the
+each tame recipes needs a `set_parser` function which sets the
 command line arguments and documentations (see one of the recipes for
 an idea). `set_parser` will be called both when the reciepe is used
 as a standalone script or as a subcommnad.
@@ -37,6 +37,6 @@ as a standalone script or as a subcommnad.
 Here is an additional checklist for implementing a new recipe.
 
 - place the recipe in a sub-package of recipes.
-- test the recipe with the latest mdppp code
+- test the recipe with the latest tame code
 - document the method used and cite appropriate reference in docstring
   of the recipe.

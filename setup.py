@@ -10,6 +10,6 @@ setup(name='tame',
       packages=find_packages(),
       install_requires=['numpy'],
       entry_points={
-          'console_scripts': ['mdppp=mdppp.recipes.bin:main']
+          'console_scripts': ['tame=tame.recipes.bin:main']
       }
 )
