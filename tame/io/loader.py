@@ -9,6 +9,11 @@ from trajectory files, which includes:
   particles, this loader is mainly for the purpose of test.
 
 """
+def guess_format(fname):
+    if fname.endswith('.dump'):
+        return 'lammps-dump'
+    if fname.endswith('.trr'):
+        return 'gromacs-trr'
 
 def load_traj(trajectory, topology=None, timestep=1, format=None):
     """ Trajectory file loader
@@ -18,10 +23,10 @@ def load_traj(trajectory, topology=None, timestep=1, format=None):
 
     Supported trajectory formats
 
-    | Format    | Trajectory Suffix | Description            |
-    |-----------|-------------------|------------------------|
-    | `lammps`  | `.dump`           | LAMMPS trajectory file |
-    | `gromacs` | `.trr`            | GROMACS trajectory     |
+    | Format         | Trajectory Suffix | Description            |
+    |----------------|-------------------|------------------------|
+    | `lammps-dump`  | `.dump`           | LAMMPS trajectory file |
+    | `gromacs-trr`  | `.trr`            | GROMACS trajectory     |
 
     Args:
         trajectory (str or list): (list of) trajectory files
@@ -32,6 +37,20 @@ def load_traj(trajectory, topology=None, timestep=1, format=None):
     Returns:
         (Trajectory): TAME Trajectory object
     """
+    from tame import io
+
+    if isinstance(trajectory, str):
+        trajectory = [trajectory]
+
+    if format is None:
+        format = guess_format(trajectory[0])
+
+    loader = {
+        'lammps-dump': lambda: io.load_lammps_dump(trajectory),
+        'gromacs-trr': lambda: io.load_gromacs_trr(trajectory, topology)
+    }[format]
+    traj = loader()
+
     return traj
 
 

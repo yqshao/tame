@@ -28,7 +28,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install --upgrade pip            
-            pip install mkdocs mkdocstrings pygments mkdocs-material pymdown-extensions
+            pip install MDAnalysis mkdocs mkdocstrings pygments mkdocs-material pymdown-extensions
             pip install -e .
             pip uninstall -y mdppp
       - save_cache:

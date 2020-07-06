@@ -1,4 +1,4 @@
-def diff_dcf(dumps, diff_out, corr_out,
+def diff_dcf(dumps, top, diff_out, corr_out,
               unit, dt, max_dt, seg_dt, fit_min, fit_max, T,
               tags, loose):
     """Computing conductity using the Green-Kubo relation and the
@@ -21,13 +21,13 @@ def diff_dcf(dumps, diff_out, corr_out,
     import numpy as np
     from tame.fit import linear_fit
     from tame.ops import tmsd, tcache, tavg, unwrap
-    from tame.io.lammps import load_multi_dumps
+    from tame.io import load_traj
     from tame.units import get_unit, ps, kB, e
     units = get_unit(unit)
     # Processing input
     n_segment = int(seg_dt*1e3/dt)
     n_cache = int(max_dt/dt)
-    data = load_multi_dumps(dumps)
+    data = load_traj(dumps, top)
 
     coord = unwrap(data['coord'], data['cell'])
     cell = data['cell'][None, None,:]
@@ -140,6 +140,8 @@ def set_parser(parser):
 
     parser.add_argument('dumps', metavar='dump', type=str, nargs='+',
                         help='dump files')
+    parser.add_argument('--top', type=str, default='',
+                        help='topology file')
     parser.add_argument('--diff-out', type=str, default='diff',
                         help='dffusion coefficients output')
     parser.add_argument('--corr-out', type=str, default='corr',
@@ -164,7 +166,7 @@ def set_parser(parser):
                         help='swith to loose mode (only check until dt)')
 
     parser.set_defaults(func=lambda args: diff_dcf(
-        args.dumps, args.diff_out, args.corr_out,
+        args.dumps, args.top, args.diff_out, args.corr_out,
         args.unit, args.dt, args.max_dt, args.seg_dt,
         args.fit_min, args.fit_max, args.temperature,
         args.tags, args.loose))

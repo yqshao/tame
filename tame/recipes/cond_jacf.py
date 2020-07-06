@@ -1,4 +1,4 @@
-def cond_jacf(dumps, jacf_out, cond_out,
+def cond_jacf(dumps, top, jacf_out, cond_out,
               unit, dt, max_dt, seg_dt, T,
               c_type, a_type, c_idx, a_idx):
     """Computing conductity using the Green-Kubo relation and the
@@ -24,13 +24,13 @@ def cond_jacf(dumps, jacf_out, cond_out,
     """
     import numpy as np
     from tame.ops import tacf, tavg
-    from tame.io.lammps import load_multi_dumps
+    from tame.io import load_traj
     from tame.units import get_unit, ps, kB, e
     units = get_unit(unit)
     # Processing input
     n_segment = int(seg_dt*1e3/dt)
     n_cache = int(max_dt/dt)
-    data = load_multi_dumps(dumps)
+    data = load_traj(dumps, top)
     if c_idx is None:
         assert c_type is not None, 'Must specify cation type or indices'
         c_idx = data['elems'] == c_type
@@ -84,6 +84,8 @@ def set_parser(parser):
                          'current-current autocorrelation function.'
     parser.add_argument('dumps', metavar='dump', type=str, nargs='+',
                         help='dump files')
+    parser.add_argument('--top', type=str, default='',
+                        help='topology file')
     parser.add_argument('--jacf-out', type=str, default='jacf',
                         help='current autocorrelation data output')
     parser.add_argument('--cond-out', type=str, default='cond_jacf',
@@ -107,7 +109,7 @@ def set_parser(parser):
     parser.add_argument('--a-idx', type=int, default=None,
                         help='anion indices')       
     parser.set_defaults(func=lambda args: cond_jacf(
-        args.dumps, args.jacf_out, args.cond_out,
+        args.dumps, args.top, args.jacf_out, args.cond_out,
         args.unit, args.dt, args.max_dt, args.seg_dt, args.temperature,
         args.c_type, args.a_type, args.c_idx, args.a_idx))
 
