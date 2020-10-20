@@ -27,18 +27,20 @@ between `1` and `2`.
 TAME can separate the pairing contribution with the following definition of ion
 pairs: "pairs of atoms that stays within the cutoff radius for at least a give
 lifetime $\tau$ at the time end when calculating the correlation function". This
-type of distinct diffusion coefficient can be specified with the tag `1,2:C{rc}`.
+type of distinct diffusion coefficient can be specified with the tag `1,2:Rc1{rc}`.
 Where `rc` is the cutoff radius.
 
-$$
-D^{d, paired}_{\alpha\beta} = \lim_{t \rightarrow \infty} \frac{1}{6t} \left [ \frac{2}{N} \sum_i^N  \sum_{j\ne i}^N \langle \Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot \prod_{t'<\tau} B( R_{ij}(t')<R_{cut} )\rangle \right ]
-$$
+> **NOTE:**  Under Construction
 
-Alternatively, the paired contribution can be defined as following, where the
-paired ions are defined as "pairs of atoms that stays within the cutoff radius
-for the time window when the correlation function is calculated". This options
-is specified with the `--loose` argument.
+<!-- $$ -->
+<!-- D^{d, paired}_{\alpha\beta} = \lim_{t \rightarrow \infty} \frac{1}{6t} \left [ \frac{2}{N} \sum_i^N  \sum_{j\ne i}^N \langle \Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot \prod_{t'<\tau} B( R_{ij}(t')<R_{cut} )\rangle \right ] -->
+<!-- $$ -->
 
-$$
-D^\mathrm{d, paired}_{\alpha\beta} = \lim_{t \rightarrow \infty} \frac{1}{6t} \left [ \frac{2}{N}\sum_i^N  \sum_{j\ne i}^N \langle \Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot \prod_{t'<t} B( R_{ij}(t')<R_{cut})\rangle \right ]
-$$
+<!-- Alternatively, the paired contribution can be defined as following, where the -->
+<!-- paired ions are defined as "pairs of atoms that stays within the cutoff radius -->
+<!-- for the time window when the correlation function is calculated". This options -->
+<!-- is specified with the `--loose` argument. -->
+
+<!-- $$ -->
+<!-- D^\mathrm{d, paired}_{\alpha\beta} = \lim_{t \rightarrow \infty} \frac{1}{6t} \left [ \frac{2}{N}\sum_i^N  \sum_{j\ne i}^N \langle \Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot \prod_{t'<t} B( R_{ij}(t')<R_{cut})\rangle \right ] -->
+<!-- $$ -->
