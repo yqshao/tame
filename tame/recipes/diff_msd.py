@@ -79,8 +79,6 @@ def diff_dcf(dumps, top, diff_out, corr_out,
                     'Rc1': lambda x: np.logical_and(x[:1, :, :], x),
                     'Rc2': lambda x: np.logical_and.accumulate(x, 0),
                     'Rc3': lambda x: np.logical_and.reduce(x, 0, keepdims=True),
-                    'Rc4': lambda x: x[:1, :, :],
-                    'Rc5': lambda x: x[-1:, :, :]
                 }[rc_type](in_cache[(t1, t2, rc)])
                 cut_out =  np.logical_not(cut_in)
                 if t1==t2:
@@ -148,7 +146,6 @@ three types of cutoff is now available:
 - Rc1: paired <- distance within cutoff at t0 and t
 - Rc2: paired <- distance within cutoff between t0 and t
 - Rc3: paired <- distance within cutoff between t0 and the given max_dt
-- Rc4: paired <- distance within cutoff at t0
 The distinction between those methods are detailed in the documentation.
 
 *Note*: pairwise distance is computed with minimum-image convention
@@ -184,7 +181,6 @@ The distinction between those methods are detailed in the documentation.
         args.unit, args.dt, args.max_dt, args.seg_dt,
         args.fit_min, args.fit_max, args.temperature,
         args.tags))
-
 
 def main():
     import argparse
