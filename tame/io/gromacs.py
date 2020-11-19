@@ -5,22 +5,14 @@ symbols = ['X','H','HE','LI','BE','B','C','N','O','F','NE','NA','MG','AL','SI','
 def _gromacs_trr_generator(trj, top, resort=False):
     import MDAnalysis as mda
     u=mda.Universe(top,trj)
+    elems=np.array([symbols.index(t) for t in u.atoms.types])
     for ts in u.trajectory:
-        coord_ts=ts._pos
-        speed_ts=ts._velocities
-        elem_ts=[symbols.index(t) for t in u.atoms.types]
-        dim=ts.dimensions
-        cell=dim[0:3]
-        coord, speed, elems = [], [], []
-        for n in range(len(elem_ts)):
-            coord.append(coord_ts[n])
-            speed.append(speed_ts[n])
-            elems.append(elem_ts[n])
         data = {
-            'coord': np.array(coord, np.float64),
-            'speed': np.array(speed, np.float64),
-            'elems': np.array(elems),
-            'cell': cell}
+            'coord': np.array(ts._pos, np.float64),
+            'cell': ts.dimensions[0:3],
+            'elems': elems}
+        if ts.has_velocities:
+            data['speed'] = np.array(ts._velocities, np.float64)
         yield data
 
 def load_gromacs_trr(trj, top):
