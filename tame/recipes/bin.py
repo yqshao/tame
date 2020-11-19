@@ -5,10 +5,10 @@ import argparse
 def main():
     from importlib import import_module
     parser = argparse.ArgumentParser(prog='tame')
-    subpss = parser.add_subparsers(dest='command', title='subcommands')
+    subpss = parser.add_subparsers(dest='command', title='subcommands', required=True)
     subps = subpss.add_parser('cond', help='Conductivity Analysess')
-    
-    subp = subps.add_subparsers(title='methods', dest='command')
+
+    subp = subps.add_subparsers(title='methods', dest='command', required=True)
     p = subp.add_parser('jacf', help='Green-Kubo method '\
                     'with current density autocorrelation function')
     import_module('tame.recipes.cond_jacf').set_parser(p)
@@ -18,7 +18,7 @@ def main():
 
 
     subps = subpss.add_parser('diff', help='Diffusion Coefficients')
-    subp = subps.add_subparsers(title='methods', dest='command')
+    subp = subps.add_subparsers(title='methods', dest='command', required=True)
     p = subp.add_parser('dcf', help='with displacement correlations')
     import_module('tame.recipes.diff_msd').set_parser(p)
 
