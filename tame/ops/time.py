@@ -50,6 +50,37 @@ class TAVG(FrameArray):
     def eval(self):
         return self.cumsum/self.count
 
+class TSURVIVE(FrameArray):
+    """Survival state FrameArray
+    """
+
+    def __init__(self, birth, death):
+        assert isinstance(birth, FrameArray)
+        assert isinstance(death, FrameArray)
+        birth.parent.derived.append(self)
+        self.birth = birth
+        self.death = death
+        self.parent = birth.parent
+        self.val = birth.eval()
+
+    def update(self):
+        self.val = ((self.val | self.birth.eval()) & ~self.death.eval())
+
+    def eval(self):
+        return self.val
+
+def tsurvive(birth, death):
+    """Cache of previous cache_size frames of data
+
+    Args:
+        birth (FrameArray): boolean for birth
+        death (FrameArray): boolean for death
+
+    Returns:
+        FrameArray: time-dependent survival state
+    """
+    return TSURVIVE(birth, death)
+
 def tcache(var, cache_size, **kwargs):
     """Cache of previous cache_size frames of data
 

@@ -22,6 +22,9 @@ def main():
     p = subp.add_parser('dcf', help='with displacement correlations')
     import_module('tame.recipes.diff_msd').set_parser(p)
 
+    p = subpss.add_parser('restime', help='Residence Time')
+    import_module('tame.recipes.restime').set_parser(p)
+
     args = parser.parse_args()
     args.func(args);
 
