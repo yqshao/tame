@@ -20,25 +20,23 @@ def diff_dcf(dumps, top, diff_out, corr_out,
     """
     import numpy as np
     from tame.fit import linear_fit
-    from tame.ops import tmsd, tcache, tavg, unwrap
+    from tame.ops import tmsd, tpairsurvive, tavg, tcache, unwrap
     from tame.io import load_traj
     from tame.units import get_unit, ps, kB, e
     units = get_unit(unit)
     # Processing input
     n_segment = int(seg_dt*1e3/dt)
     n_cache = int(max_dt/dt)
+    d_cache = {}
     data = load_traj(dumps, top)
-
     coord = unwrap(data['coord'], data['cell'])
-    cell = data['cell'][None, None,:]
 
     # Defining the correlations to evaluate
     def make_corrs():
         corrs = {}
         all_dr = {}
-        dists = {}
-        in_cache = {}
-        def get_dr(t):
+        d_cache = {}
+        def get_dr(t): # dr is reconstructed at each call to make_corrs
             if t not in all_dr.keys():
                 r_t = coord[data['elems'].eval()==t]
                 all_dr[t] = tcache(r_t, n_cache) - r_t[None, :, :]
@@ -49,56 +47,28 @@ def diff_dcf(dumps, top, diff_out, corr_out,
                 corrs[tag] = tavg(corr)
             elif ':' not in tag: #distinct diffusion
                 t1, t2 = map(int, tag.split(','))
-                if t1==t2: # same species
-                    dr_i = get_dr(t1)
-                    dr_j = np.sum(dr_i, axis=1, keepdims=True) - dr_i
-                    corr = np.mean(np.sum(dr_i*dr_j, axis=2), axis=1)
-                else: # Different species
-                    dr_i = np.mean(get_dr(t1), axis=1)
-                    dr_j = np.sum(get_dr(t2), axis=1)
-                    corr = np.sum(dr_i*dr_j, axis=1)
-                corrs[tag] = tavg(corr)
-            elif 'Rc' in tag: # Handel the cutoffs here
-                t1, t2 = map(int, tag.split(',')[:2])
-                rc_type, rc = tag.split(',')[-1].split(':')
-                rc = float(rc)
-                # All the pairs we are going to care
-                idx_i = np.where((data['elems']==t1).eval())[0]
-                idx_j = np.where((data['elems']==t2).eval())[0]
-                r_i = coord[idx_i]; r_j = coord[idx_j]
-                if (t1, t2) not in dists:
-                    r_ij = r_i[:,None,:] - r_j[None, :, :]
-                    r_ij = r_ij - np.rint(r_ij/cell)*cell
-                    dist = np.sqrt(np.sum(r_ij**2, axis=2))
-                    dists[(t1, t2)] = dist
-                if (t1, t2, rc) not in in_cache:
-                    in_cache[(t1, t2, rc)] = tcache(dists[(t1, t2)]<=rc, n_cache)
-                # "Memory" of in/out
-                # Criterion for in/out
-                cut_in = {
-                    'Rc1': lambda x: np.logical_and(x[:1, :, :], x),
-                    'Rc2': lambda x: np.logical_and.accumulate(x, 0),
-                    'Rc3': lambda x: np.logical_and.reduce(x, 0, keepdims=True),
-                }[rc_type](in_cache[(t1, t2, rc)])
-                cut_out =  np.logical_not(cut_in)
-                if t1==t2:
-                    cut_in = cut_in * (1-np.eye(len(idx_i))[None, :, :])
-                # Add the corresponding j_in/out for each i first
                 dr_i = get_dr(t1); dr_j = get_dr(t2)
-                # [time, i, j, xyz]
-                dr_j_in  = np.sum(dr_j[:,None,:,:]*cut_in[:,:,:,None],axis=2)
-                dr_j_out = np.sum(dr_j[:,None,:,:]*cut_out[:,:,:,None],axis=2)
+                if t1==t2: # same species
+                    dr_j = np.sum(dr_j, axis=1, keepdims=True) - dr_i
+                    corr = np.mean(np.sum(dr_i*dr_j, axis=2), axis=1)
+                else: # different species
+                    corr = np.sum(
+                        np.mean(dr_i,axis=1)*np.sum(dr_j,axis=1), axis=1)
+                corrs[tag] = tavg(corr)
+            else:
+                t1, t2 = map(int, tag.split(':')[0].split(','))
+                dr_i = get_dr(t1); dr_j = get_dr(t2)
+                alive = tpairsurvive(data, tag, n_cache, d_cache)
+                dead = -(alive-1)-np.eye(alive.val.shape[1])[None,:,:]*int(t1==t2)
+                dr_j_in  = np.sum(dr_j[:,None,:,:]*alive[:,:,:,None],axis=2)
+                dr_j_out = np.sum(dr_j[:,None,:,:]*dead[:,:,:,None],axis=2)
+                cnt = np.mean(np.sum(alive, axis=2), axis=1)
                 corr_in = np.mean(np.sum(dr_i*dr_j_in, axis=2), axis=1)
                 corr_out = np.mean(np.sum(dr_i*dr_j_out, axis=2), axis=1)
-                cnt_in = np.mean(np.sum(np.logical_and.accumulate(
-                    in_cache[(t1, t2, rc)], 0), axis=2), axis=1)
-                corrs[tag+f',cnt'] = tavg(np.ones(n_cache)*cnt_in)
-                corrs[tag+f',tot_in'] = tavg(corr_in)
-                corrs[tag+f',tot_out'] = tavg(corr_out)
-            else:
-                raise NotImplementedError(f"We can not handel the tag {tag}, sorry dude.")
+                corrs[tag+f':cnt'] = tavg(cnt)
+                corrs[tag+f':in'] = tavg(corr_in)
+                corrs[tag+f':out'] = tavg(corr_out)
         return corrs
-
 
     # Running
     count = 0
@@ -106,7 +76,7 @@ def diff_dcf(dumps, top, diff_out, corr_out,
     while True:
         corrs = make_corrs()
         keys = list(corrs.keys())
-        labels = [f'D_{{{k}}}' for k in list(corrs.keys())]
+        labels = [f'D_{k}' for k in list(corrs.keys())]
         count += 1
 
         try:
@@ -141,14 +111,10 @@ def set_parser(parser):
 Self diffusion coefficients (D^s) can be specified using their type
 disctinct diffusion coefficients (D^d) is specified using e.g. 3,3
 
-You can further split the D^d by a cutoff radius using e.g. 3,3,Rc1:3.5,
-three types of cutoff is now available:
-- Rc1: paired <- distance within cutoff at t0 and t
-- Rc2: paired <- distance within cutoff between t0 and t
-- Rc3: paired <- distance within cutoff between t0 and the given max_dt
-The distinction between those methods are detailed in the documentation.
+You can further split the D^d with according to a pair survival
+correlation function, e.g. "3,3:SSP:3.0,4.0".
 
-*Note*: pairwise distance is computed with minimum-image convention
+Details about pair survival definition can be found in
 """
 
     parser.add_argument('dumps', metavar='dump', type=str, nargs='+',
