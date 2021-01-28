@@ -72,6 +72,12 @@ class FrameArray():
     def __pow__(self, other):
         return np.power(self, other)
 
+    def __invert__(self):
+        return np.invert(self)
+
+    def __and__(self, other):
+        return np.bitwise_and(self, other)
+
     def sum(self, **kwargs):
         return self.__array_ufunc__(np.sum, None, (self), **kwargs)
 
