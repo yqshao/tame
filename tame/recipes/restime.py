@@ -45,15 +45,21 @@ def restime(dumps, top, tcf_out, unit, dt, max_dt, seg_dt, tags):
                 dist = np.sqrt(np.sum(r_ij**2, axis=2))
                 dists[(t1, t2)] = dist
             birth = dists[(t1, t2)]<=rc[0]
+            death = dists[(t1, t2)]>rc[int(method=='SSP')]
             if t1==t2:
                 birth = birth * (1-np.eye(len(idx_i))[None, :, :])
-            death = dists[(t1, t2)]>rc[int(method=='SSP')]
             if method == 'IMM':
                 n_death = int(rc[1]/dt)
                 death = np.logical_and.accumulate(
                     tcache(death, n_death), axis=0)
-            corrs[tag] = tavg(np.logical_and.accumulate(
-                tcache(tsurvive(birth, death), n_cache), axis=0).sum(axis=2).mean(axis=1))
+                corrs[tag] = tavg(np.logical_and.accumulate(
+                    tcache(tsurvive(birth, death), n_cache), axis=0)
+                                  .sum(axis=2).mean(axis=1))
+            elif method == 'SSP':
+                corrs[tag] = tavg(np.logical_and(
+                    tcache(birth, n_cache), np.logical_and.accumulate(
+                        tcache(~death, n_cache), axis=0))
+                                  .sum(axis=2).mean(axis=1))
         return corrs
 
     # Running
