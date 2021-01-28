@@ -92,11 +92,6 @@ Three types of correation functions supported corresponding to three different
 definitions of residence time. More details can be found in: Lagge and
 Hynes, J. Phys. Chem. B, 2008, 112, 7697-7701.
 
-RF (reactive flux): e.g. `3,4:SF:3.0`
--------------------------------------
-The reactive flux method, note that here only we consider only the first passage
-time, thus RF is equivatlent to IMM with t*=0 or SSP with a single cutoff.
-
 IMM (Impey, Madden, McDonald): e.g. `3,4:IMM:3.0,1`
 ---------------------------------------------------
 The pairs are defined as two ions that doees not depart for more than certain
