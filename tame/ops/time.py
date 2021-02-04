@@ -93,7 +93,7 @@ def tcache(var, cache_size, **kwargs):
     """
     return TCACHE(var, cache_size, **kwargs)
 
-def tavg(var, dropnan='partial'):
+def tavg(var, dropnan='all'):
     """Time average value:
 
     $$\langle \mathbf{var} \\rangle$$
@@ -112,7 +112,7 @@ def tavg(var, dropnan='partial'):
     """
     return TAVG(var, dropnan)
 
-def tacf(var, cache_size, dropnan='partial'):
+def tacf(var, cache_size, dropnan='all'):
     """Time autocorrelation function:
 
     $$\langle \mathbf{var}_i(0) \cdot \mathbf{var}_i(dt) \\rangle_{i,t}$$
@@ -134,7 +134,7 @@ def tacf(var, cache_size, dropnan='partial'):
     tacf = tavg(acf, dropnan)
     return tacf
     
-def tmsd(var, cache_size, dropnan='partial'):
+def tmsd(var, cache_size, dropnan='all'):
     """Mean squred displacement function:
 
     $$\langle (\mathbf{var}_i(dt) - \mathbf{var}_i(0))^2 \\rangle_{i,t}$$
