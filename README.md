@@ -7,8 +7,15 @@ mainly aiming for calculating transport properties of electrolyte systems.
 
 ## Installation
 
+**with pip**
 ``` shell
-   pip install git+https://github.com/yqshao/mdppp.git
+   pip install git+https://github.com/Teoroo-CMC/tame.git
+```
+
+**with singularity**
+
+``` shell
+   singularity build (--remote) tame.sif docker:yqshao/tame:latest
 ```
 
 ## Using a recipe
