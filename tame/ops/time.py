@@ -203,11 +203,14 @@ def tpairsurvive(data, tag, n_cache, d_cache={}):
     death = d_cache[(t1, t2)]>rc[int(method=='SSP')]
     if t1==t2:
         birth = birth * (1-np.eye(len(idx_i))[None, :, :])
+    if method == 'RF':
+        corr = np.multiply.accumulate(
+            tcache(tsurvive(birth, death), n_cache), axis=0)
     if method == 'IMM':
         n_death = int(rc[1]/dt)
         death = np.multiply.accumulate(
             tcache(death, n_death), axis=0)
-        corrs = np.multiply.accumulate(
+        corr = np.multiply.accumulate(
             tcache(tsurvive(birth, death), n_cache), axis=0)
     elif method == 'SSP':
         corr = np.multiply(
