@@ -3,7 +3,7 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends build-essential gcc
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-RUN pip install MDAnalysis
+RUN pip install MDAnalysis==1.0.0
 COPY . /opt/tame
 RUN pip install /opt/tame
 
