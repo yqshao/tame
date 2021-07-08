@@ -12,7 +12,7 @@ from trajectory files, which includes:
 def guess_format(fname):
     if fname.endswith('.dump'):
         return 'lammps-dump'
-    if fname.endswith('.trr'):
+    if fname.endswith('.xtc'):
         return 'gromacs-trr'
 
 def load_traj(trajectory, topology=None, timestep=1, format=None):
