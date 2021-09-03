@@ -25,7 +25,7 @@ class TAVG(FrameArray):
     """Time avarage of FrameArray
     """
     
-    def __init__(self, var, dropnan='all'):
+    def __init__(self, var, dropnan='partial'):
         assert isinstance(var, FrameArray)
         var.parent.derived.append(self)
         self.var = var
@@ -93,7 +93,7 @@ def tcache(var, cache_size, **kwargs):
     """
     return TCACHE(var, cache_size, **kwargs)
 
-def tavg(var, dropnan='all'):
+def tavg(var, dropnan='partial'):
     """Time average value:
 
     $$\langle \mathbf{var} \\rangle$$
@@ -112,7 +112,7 @@ def tavg(var, dropnan='all'):
     """
     return TAVG(var, dropnan)
 
-def tacf(var, cache_size, dropnan='all'):
+def tacf(var, cache_size, dropnan='partial'):
     """Time autocorrelation function:
 
     $$\langle \mathbf{var}_i(0) \cdot \mathbf{var}_i(dt) \\rangle_{i,t}$$
@@ -134,7 +134,7 @@ def tacf(var, cache_size, dropnan='all'):
     tacf = tavg(acf, dropnan)
     return tacf
     
-def tmsd(var, cache_size, dropnan='all'):
+def tmsd(var, cache_size, dropnan='partial'):
     """Mean squred displacement function:
 
     $$\langle (\mathbf{var}_i(dt) - \mathbf{var}_i(0))^2 \\rangle_{i,t}$$
