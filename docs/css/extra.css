@@ -1,33 +1,56 @@
-div.doc-contents:not(.first) {
-  padding-left: 25px;
-  border-left: 4px solid rgba(230, 230, 230);
-  margin-bottom: 80px;
+:root {
+  --md-primary-fg-color:         #be2435;
+  --md-accent-fg-color:          #be2433;
 }
 
-h5.doc-heading {
-  text-transform: none !important;
+.prompt {
+  display: none !important;
 }
 
-h6.hidden-toc {
-  margin: 0 !important;
-  position: relative;
-  top: -70px;
+.jp-InputPrompt {
+  display: none !important;
 }
 
-h6.hidden-toc::before {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+.jp-OutputPrompt {
+  display: none !important;
 }
 
-h6.hidden-toc a.headerlink {
-  display: none;
+.center {
+    display: block;
+    margin: 0 auto;
 }
 
-td code {
-  word-break: normal !important;
+.md-sidebar{
+  max-width: 180px;
 }
 
-td p {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+.md-content {
+  max-width: 750px;
+}
+
+.md-grid {
+  max-width: 950px;
+  margin-left: 0px;
+}
+
+.md-typeset__table {
+  min-width: 100%;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+  font-size: 90%;
+}
+
+.md-typeset table:not([class]) td:last-of-type{
+  width: 100%;
+}
+
+.md-typeset table:not([class]) td{
+  padding: 10px 20px;
+  white-space:nowrap;
+}
+.md-typeset table:not([class]) th{
+  padding: 10px 20px;
+  white-space:nowrap;
 }

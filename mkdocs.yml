@@ -1,5 +1,5 @@
 site_name: TAME Documentation
-site_url: https://yqshao.github.io/mdppp/tame
+site_url: https://yqshao.github.io/tame
 nav:
   - Home: index.md
   - Contributing: contributing.md
@@ -21,6 +21,7 @@ nav:
       - tame.io.loader: api/loader.md
       - tame.io.writer: api/writer.md
 plugins:
+  - mike
   - search
   - mkdocstrings:
       handlers:

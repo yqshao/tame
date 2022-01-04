@@ -1,0 +1,72 @@
+name: Build and Test
+on:
+  push:
+    branches:
+      - master
+jobs:
+  pytest:
+    name: Run Pytest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache Env
+        uses: actions/cache@v2
+        with:
+          path: ./.venv
+          key: ${{ runner.os }}-venv-py${{ matrix.python-version }}-${{ hashFiles('./requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-venv-py${{ matrix.python-version }}-${{ hashFiles('./requirements*.txt') }}
+            ${{ runner.os }}-
+      - name: Install dependencies
+        if: steps.cache-venv.outputs.cache-hit != 'true'
+        run: |
+          python3 -m venv ./.venv
+          . ./.venv/bin/activate
+          pip install -r requirements-dev.txt
+          pip install -r requirements-doc.txt
+      - name: Install TAME
+        run: |
+          . ./.venv/bin/activate
+          pip install .
+      - name: Test with pytest
+        run: |
+          . ./.venv/bin/activate
+          pytest tests/
+  deploy-docs:
+    name: Deploy docs
+    needs: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Cache Env
+        uses: actions/cache@v2
+        with:
+          path: ./.venv
+          key: ${{ runner.os }}-venv-py3.9-${{ hashFiles('./requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-venv-py3.9-${{ hashFiles('./requirements*.txt') }}
+            ${{ runner.os }}-
+      - name: Install TAME
+        run: |
+          . ./.venv/bin/activate
+          pip install .
+      - name: Deploy docs
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          . ./.venv/bin/activate
+          wget https://raw.githubusercontent.com/yqshao/mkdocs-material/yqshao/action.sh
+          chmod +x action.sh && ./action.sh

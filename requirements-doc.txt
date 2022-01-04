@@ -1,0 +1,5 @@
+mike
+mkdocs
+mkdocs-bibtex
+mkdocstrings
+git+https://github.com/yqshao/mkdocs-material.git@yqshao
