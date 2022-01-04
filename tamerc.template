@@ -1,0 +1,10 @@
+### TAMERC Template
+
+## Backends
+
+# io.backend        : mda
+# core.backed       : numpy
+
+## Recipie settings
+# recipie.seg       : 5
+# recipie.npar      : 1

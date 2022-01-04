@@ -2,44 +2,41 @@ site_name: TAME Documentation
 site_url: https://yqshao.github.io/tame
 nav:
   - Home: index.md
+  - Recipes:
+    - Overview:     recipe/overview.md
+    - tame jacf:    recipe/jacf.md
+    - tame mdc:     recipe/mdc.md
+    - tame sfac:    recipe/sfac.md
+    - tame rdf:     recipe/rdf.md
+    - tame pmsd:    recipe/pmsd.md
+    - tame persist: recipe/persist.md
+  - Developing:
+    - Overview: developing/overview.md
+    - Concepts: developing/concepts.md
+    - Backends: developing/backends.md
+    - Write a recipe: developing/write_a_recipe.md
   - Contributing: contributing.md
   - About: about.md
-  - Tutorials:
-    - Overview: tutorial/overview.md
-    - Basic concepts: tutorial/basics.md
-    - Write a recipe: tutorial/recipe.md
-  - Recipes:
-    - Overview: recipe/overview.md
-    - tame diff: recipe/diff.md
-    - tame cond: recipe/cond.md
-    - tame struct: recipe/struct.md
-    - tame restime: recipe/restime.md
-  - API Reference:
-    - tame.core: api/core.md
-    - tame.time: api/time.md
-    - tame.io:
-      - tame.io.loader: api/loader.md
-      - tame.io.writer: api/writer.md
 plugins:
   - mike
-  - search
-  - mkdocstrings:
-      handlers:
-        python:
-          rendering:
-            show_root_heading: true
-            show_source: false
-            show_root_full_path: false
+  - bibtex:
+      bib_file: "docs/references.bib"
 theme:
   name: material
-  features:
-    - tabs
 markdown_extensions:
+  - toc:
+      toc_depth: 2
   - admonition
-  - codehilite
+  - attr_list
+  - footnotes
+  - pymdownx.highlight
   - pymdownx.arithmatex
   - pymdownx.tasklist
-extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - pymdownx.superfences
+extra:
+  version:
+    provider: mike
 extra_css:
   - css/extra.css
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML

@@ -26,6 +26,6 @@ cation and anion species:
 
 
 ``` shell
-   tame cond jacf prod.dump --c-type 1 --a-type 2
+tame diff mcd traj.dump --seg 5000 --dt 5 --tag '1 1,1'
 ```
 
