@@ -18,7 +18,7 @@ tame persist traj.dump -t '3,4:SSP:3.0,4.0'
 | `--seg [-s]`       | `5000`  | Segment length [ps]                              |
 | `--format [-f]`    | `auto`  | Trajectory format                                |
 | `--max-dt`         | `20`    | Time correlation function window                 |
-| `--tag [-t]`       | `'1'`   | Tags definitions, see [below](##Tag definitions) |
+| `--tags [-t]`       | `'1'`   | Tags definitions, see [below](##Tag definitions) |
 | `--tcf-out`        | `'tcf'` | Time correlation function output                 |
 
 ## Tag definitions

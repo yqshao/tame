@@ -1,32 +1,24 @@
 """Main entry point of tame"""
+import tame
+import click
+from tame.recipes.mdc     import mdc_cmd
+from tame.recipes.pmsd    import pmsd_cmd
+from tame.recipes.jacf    import jacf_cmd
+from tame.recipes.persist import persist_cmd
 
-import argparse
-
+@click.group()
 def main():
-    from importlib import import_module
-    parser = argparse.ArgumentParser(prog='tame')
-    subpss = parser.add_subparsers(dest='command', title='subcommands', required=True)
-    subps = subpss.add_parser('cond', help='Conductivity Analysess')
+    """TAME CLI - Command line interface of TAME"""
+    pass
 
-    subp = subps.add_subparsers(title='methods', dest='command', required=True)
-    p = subp.add_parser('jacf', help='Green-Kubo method '\
-                    'with current density autocorrelation function')
-    import_module('tame.recipes.cond_jacf').set_parser(p)
-    p = subp.add_parser('pmsd', help='Green-Kubo method '\
-                            'with polarization mean square displacement')
-    import_module('tame.recipes.cond_pmsd').set_parser(p)
+main.add_command(mdc_cmd)
+main.add_command(pmsd_cmd)
+main.add_command(jacf_cmd)
+main.add_command(persist_cmd)
 
-
-    subps = subpss.add_parser('diff', help='Diffusion Coefficients')
-    subp = subps.add_subparsers(title='methods', dest='command', required=True)
-    p = subp.add_parser('dcf', help='with displacement correlations')
-    import_module('tame.recipes.diff_msd').set_parser(p)
-
-    p = subpss.add_parser('restime', help='Residence Time')
-    import_module('tame.recipes.restime').set_parser(p)
-
-    args = parser.parse_args()
-    args.func(args);
+@click.command()
+def version():
+    click.echo(f'TAME version: {tame.__version__}')
 
 if __name__ == "__main__":
     main()

@@ -15,7 +15,7 @@ def guess_format(fname):
     if fname.endswith('.xtc'):
         return 'gromacs-trr'
 
-def load_traj(trajectory, topology=None, timestep=1, format=None):
+def load_traj(trajectory, topology=None, format='auto'):
     """ Trajectory file loader
 
     By default, the file format is guessed from the file name of the first
@@ -31,7 +31,6 @@ def load_traj(trajectory, topology=None, timestep=1, format=None):
     Args:
         trajectory (str or list): (list of) trajectory files
         topology (str): topology file
-        timestep (float): timestep of the trajectory
         format (str): file format
 
     Returns:
@@ -42,7 +41,7 @@ def load_traj(trajectory, topology=None, timestep=1, format=None):
     if isinstance(trajectory, str):
         trajectory = [trajectory]
 
-    if format is None:
+    if format is 'auto':
         format = guess_format(trajectory[0])
 
     loader = {

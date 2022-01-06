@@ -12,7 +12,7 @@ setup(name='tame',
       author_email='yunqi_shao@yahoo.com',
       license='BSD',
       packages=find_packages(),
-      install_requires=['numpy'],
+      install_requires=['numpy>=1.8', 'click>=7.0'],
       entry_points={
           'console_scripts': ['tame=tame.recipes.bin:main']
       }
