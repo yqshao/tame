@@ -1,7 +1,11 @@
+import re
 from setuptools import setup, find_packages
 
+with open('tame/__init__.py') as f:
+    version = re.search("__version__ = '(.*)'", f.read()).group(1)
+
 setup(name='tame',
-      version='dev',
+      version=version,
       description='Trajectory Analysis Made Easy',
       url='https://github.com/yqshao/mdppp',
       author='Yunqi Shao',
