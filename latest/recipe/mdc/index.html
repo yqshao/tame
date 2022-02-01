@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://yqshao.github.io/tame/latest/tutorial/overview/">
+        <link rel="canonical" href="https://yqshao.github.io/tame/latest/recipe/mdc/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.4">
     
     
       
-        <title>Overview - TAME Documentation</title>
+        <title>tame mdc - TAME Documentation</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview" class="md-skip">
+        <a href="#mean-displacement-correlation" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              tame mdc
             
           </span>
         </div>
@@ -156,12 +156,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         Recipes
@@ -179,7 +181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipe/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -191,7 +193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipe/jacf/" class="md-nav__link">
+      <a href="../jacf/" class="md-nav__link">
         tame jacf
       </a>
     </li>
@@ -201,11 +203,72 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../recipe/mdc/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          tame mdc
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         tame mdc
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags-definitions" class="md-nav__link">
+    Tags definitions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pairing-contributions" class="md-nav__link">
+    Pairing contributions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -215,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipe/sfac/" class="md-nav__link">
+      <a href="../sfac/" class="md-nav__link">
         tame sfac
       </a>
     </li>
@@ -227,7 +290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipe/rdf/" class="md-nav__link">
+      <a href="../rdf/" class="md-nav__link">
         tame rdf
       </a>
     </li>
@@ -239,7 +302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipe/pmsd/" class="md-nav__link">
+      <a href="../pmsd/" class="md-nav__link">
         tame pmsd
       </a>
     </li>
@@ -251,7 +314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipe/persist/" class="md-nav__link">
+      <a href="../persist/" class="md-nav__link">
         tame persist
       </a>
     </li>
@@ -391,6 +454,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags-definitions" class="md-nav__link">
+    Tags definitions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pairing-contributions" class="md-nav__link">
+    Pairing contributions
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -402,17 +501,112 @@
               
                 
                 
-                <h1 id="overview">Overview</h1>
-<p>In TAME, analysis is defined through <code>FrameArray</code> - numpy-array-like objects
-which are updated when the program goes through the trajectories - and their
-time correlations.</p>
-<p>The following set of tutorials walks you through how different structural and
-dynamic properties can be defined from those objects, along with some example
-analysis that can be represented.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The documentation is a work in progress, the instructions here are
-rather what things are intended to be, than how things actually work. </p>
+                <h1 id="mean-displacement-correlation">Mean Displacement Correlation</h1>
+<p>Computes the mean displacement correlation (MDC) for the determination of self
+or distinct diffusion coefficients. The options thereof are detailed below:</p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><span></span><code>tame mcd --tags <span class="s1">&#39;3 4 3,4:SSP:3.0,4.0&#39;</span> traj.dump
+</code></pre></div>
+<h2 id="options">Options</h2>
+<table>
+<thead>
+<tr>
+<th>Option [shorthand]</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-top</code></td>
+<td><code>None</code></td>
+<td>Topology file</td>
+</tr>
+<tr>
+<td><code>-dt</code></td>
+<td><code>1</code></td>
+<td>Time step of the trajectory [ps]</td>
+</tr>
+<tr>
+<td><code>--seg [-s]</code></td>
+<td><code>5000</code></td>
+<td>Segment length [ps]</td>
+</tr>
+<tr>
+<td><code>--format [-f]</code></td>
+<td><code>auto</code></td>
+<td>Trajectory format</td>
+</tr>
+<tr>
+<td><code>--max-dt</code></td>
+<td><code>20</code></td>
+<td>Time window for MDC fitting [ps]</td>
+</tr>
+<tr>
+<td><code>--tag [-t]</code></td>
+<td><code>'1'</code></td>
+<td>Tags definitions, see <a href="##Tag definitions">below</a></td>
+</tr>
+<tr>
+<td><code>--fit-min</code></td>
+<td><code>5</code></td>
+<td>Minimal time for msd fit [ps]</td>
+</tr>
+<tr>
+<td><code>--fit-max</code></td>
+<td><code>20</code></td>
+<td>Maximal time for msd fit [ps]</td>
+</tr>
+<tr>
+<td><code>--mdc-out</code></td>
+<td><code>mdc</code></td>
+<td>MDC output</td>
+</tr>
+<tr>
+<td><code>--diff-out</code></td>
+<td><code>diff</code></td>
+<td>diffusion coefficient output</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tags-definitions">Tags definitions</h2>
+<p>This command is capable of computing different diffusion coefficients in batch,
+to specify multiple diffusion coefficients, delimit their definitions with
+spaces in a string. The command supports the following types of tags:</p>
+<ul>
+<li><code>1</code>: A single species specifies the self diffusion coefficient of the species</li>
+<li><code>1,2</code>: Two species (can be the same) delimited by a comma specifies the
+  distinct diffusion coefficient defined between them.</li>
+<li><code>1,2:SSP:3,4</code>: Extending the distinct diffusion coefficient with a
+  <a href="../persist/#Persistence definitions">persistence time definition</a> separates the
+  coefficient into the contribution of pairing and non-pairing contributions,
+  see below.</li>
+</ul>
+<h2 id="pairing-contributions">Pairing contributions</h2>
+<p>TAME can separate the pairing contribution of the diffusion coefficients
+according to the following definition:<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<div class="arithmatex">
+<div class="MathJax_Preview"> D^\mathrm{d, pairing}_{\alpha\beta} = \lim_{t \rightarrow \infty}
+\frac{1}{3tN} \left [ \sum_i \sum_{j\ne i} \langle
+\Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot
+f(r_{ij};s))\rangle \right] </div>
+<script type="math/tex; mode=display"> D^\mathrm{d, pairing}_{\alpha\beta} = \lim_{t \rightarrow \infty}
+\frac{1}{3tN} \left [ \sum_i \sum_{j\ne i} \langle
+\Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot
+f(r_{ij};s))\rangle \right] </script>
+</div>
+<p>, where <span class="arithmatex"><span class="MathJax_Preview">f(r_{ij}; s)</span><script type="math/tex">f(r_{ij}; s)</script></span> is a function related to the persistence time of the pair,
+of which different definitions exist, to compute the distinct diffusion
+coefficient for pairs, use a tag such as <code>'3,4:SSP:3.0,4.0'</code>, available
+definitions of the persistence function can be found in the <a href="../persist/#Persistence time definitions"><code>tame
+persist</code></a> documentation.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>H. Gudla, Y. Shao, S. Phunnarungsi, D. Brandell, and C. Zhang. Importance of the ion-pair lifetime in polymer electrolytes. <em>J. Phys. Chem. Lett.</em>, 12:8460–8464, 2021. <a href="https://doi.org/10.1021/acs.jpclett.1c02474">doi:10.1021/acs.jpclett.1c02474</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
                 
               
@@ -429,6 +623,39 @@ rather what things are intended to be, than how things actually work. </p>
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../jacf/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              tame jacf
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../sfac/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              tame sfac
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
