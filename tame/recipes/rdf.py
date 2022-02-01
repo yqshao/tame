@@ -44,7 +44,7 @@ def rdf_cmd(seg, dt, rmax, rbin, tags, rdf_out):
     VAVG = Vavg.eval()
     vshell = 4*np.pi*RDF['r']**2*rbin
     # generating output
-    for k, v in count.items():
+    for tag, v in count.items():
         rho = factor[tag]/VAVG
-        RDF[f'g_{{{k}}}(r)'] = v.eval()/rho/vshell
+        RDF[f'g_{{{tag}}}(r)'] = v.eval()/rho/vshell
     return {rdf_out: RDF}

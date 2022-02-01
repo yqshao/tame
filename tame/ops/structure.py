@@ -40,7 +40,7 @@ class NeighbourList():
         self.nl_r = FrameArray(traj, val=[])
         self.traj = traj
         for ti, tj in zip(types_i, types_j):
-            if ti<=tj:
+            if ti>tj:
                 ti, tj = tj, ti
             idx_i = np.where((traj['elems']==ti).eval())
             idx_j = np.where((traj['elems']==tj).eval())
@@ -117,7 +117,7 @@ class NeighbourList():
             idx_i.append(idx_i_rc[idx_distinct])
             idx_j.append(idx_j_rc[idx_distinct])
             r.append(r_ij[idx_distinct])
-        # # # updated the of i, j and r
+        # updated i j and r
         self.nl_i.val = np.concatenate(idx_i, axis=0)
         self.nl_j.val = np.concatenate(idx_j, axis=0)
         self.nl_r.val = np.concatenate(r, axis=0)
