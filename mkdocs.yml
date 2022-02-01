@@ -6,10 +6,11 @@ nav:
     - Overview:     recipe/overview.md
     - tame jacf:    recipe/jacf.md
     - tame mdc:     recipe/mdc.md
-    - tame sfac:    recipe/sfac.md
-    - tame rdf:     recipe/rdf.md
-    - tame pmsd:    recipe/pmsd.md
+    - tame onsager: recipe/onsager.md
     - tame persist: recipe/persist.md
+    - tame pmsd:    recipe/pmsd.md
+    - tame rdf:     recipe/rdf.md
+    - tame sfac:    recipe/sfac.md
   - Developing:
     - Overview: developing/overview.md
     - Concepts: developing/concepts.md
