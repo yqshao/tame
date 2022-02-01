@@ -20,6 +20,16 @@ class UnwrappedCoord(FrameArray):
     def eval(self):
         return self.val
 
+def _build_clist(ccount, cidx):
+    natoms = cidx.shape[0]
+    args  = np.lexsort([cidx[:,i] for i in range(3)])
+    uc, uc0, ucinv, uccnt = np.unique(
+        cidx[args], return_index=True, return_inverse=True, return_counts=True, axis=0)
+    alist = np.full([ccount[0], ccount[1], ccount[2], uccnt.max()], -1)
+    acid = np.zeros(natoms, int); acid[args] = np.arange(natoms)-uc0[ucinv]
+    alist[cidx[:,0], cidx[:,1], cidx[:,2], acid] = np.arange(natoms)
+    return uc, alist
+
 class NeighbourList():
     def __init__(self, traj, types_i, types_j, rc):
         self.all_i = np.array([], np.int)
@@ -87,18 +97,8 @@ class NeighbourList():
         cidx_i -= cmin; cidx_j -= cmin
         ccount = np.max(np.concatenate([cidx_i, cidx_j], axis=0), axis=0)+1
 
-        def build_clist(ccount, cidx):
-            natoms = cidx.shape[0]
-            args  = np.lexsort([cidx[:,i] for i in range(3)])
-            uc, uc0, ucinv, uccnt = np.unique(
-                cidx[args], return_index=True, return_inverse=True, return_counts=True, axis=0)
-            alist = np.full([ccount[0], ccount[1], ccount[2], uccnt.max()], -1)
-            acid = np.zeros(natoms, int); acid[args] = np.arange(natoms)-uc0[ucinv]
-            alist[cidx[:,0], cidx[:,1], cidx[:,2], acid] = np.arange(natoms)
-            return uc, alist
-
-        uc_i, alist_i = build_clist(ccount, cidx_i)
-        uc_j, alist_j = build_clist(ccount, cidx_j)
+        uc_i, alist_i = _build_clist(ccount, cidx_i)
+        uc_j, alist_j = _build_clist(ccount, cidx_j)
 
         idx_i, idx_j, r = [], [], []
         for cidx in uc_i:

@@ -5,7 +5,7 @@ Computing the radial distribution function (RDF).
 ## Usage
 
 ```bash
-tame pmsd -t '3,3 3,4' traj.dump
+tame rdf -t '3,3 3,4' traj.dump
 ```
 
 ## Options

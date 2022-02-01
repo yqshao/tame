@@ -30,6 +30,6 @@ tame pmsd -c 3 -a 4 traj.dump
 
 !!! warning "Partially implemented"
 
-    Currently, only monovalent ions are supported for this commands. The ion definition
+    Currently, only monovalent ions are supported for this command. The ion definition
     might be improved in the future to support more flexible definitions (multiple ionic 
     species and multivalent ions) 

@@ -54,4 +54,11 @@ coefficient for pairs, use a tag such as `'3,4:SSP:3.0,4.0'`, available
 definitions of the persistence function can be found in the [`tame
 persist`](persist.md#Persistence time definitions) documentation.
 
+Note that this tag outputs both the persistence time (as the count of alive
+pairs) and the pairing distribution at each $t$ value, where $s=t$, which is
+computationally more efficient in TAME. Care should be taken when interpreting
+the values, the point estimation of $\frac{\mathrm{MDC}}{3tN}$ or its fitted
+value is only meaningful if the persistence time converges **and** the
+MDC is linear to time.
+
 \bibliography
