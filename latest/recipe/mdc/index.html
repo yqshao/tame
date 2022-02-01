@@ -600,6 +600,12 @@ of which different definitions exist, to compute the distinct diffusion
 coefficient for pairs, use a tag such as <code>'3,4:SSP:3.0,4.0'</code>, available
 definitions of the persistence function can be found in the <a href="../persist/#Persistence time definitions"><code>tame
 persist</code></a> documentation.</p>
+<p>Note that this tag outputs both the persistence time (as the count of alive
+pairs) and the pairing distribution at each <span class="arithmatex"><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> value, where <span class="arithmatex"><span class="MathJax_Preview">s=t</span><script type="math/tex">s=t</script></span>, which is
+computationally more efficient in TAME. Care should be taken when interpreting
+the values, the point estimation of <span class="arithmatex"><span class="MathJax_Preview">\frac{\mathrm{MDC}}{3tN}</span><script type="math/tex">\frac{\mathrm{MDC}}{3tN}</script></span> or its fitted
+value is only meaningful if the persistence time converges <strong>and</strong> the
+MDC is linear to time.</p>
 <div class="footnote">
 <hr />
 <ol>
