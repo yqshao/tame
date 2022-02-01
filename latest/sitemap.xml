@@ -66,6 +66,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://yqshao.github.io/tame/latest/recipe/onsager/</loc>
+         <lastmod>2022-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://yqshao.github.io/tame/latest/recipe/overview/</loc>
          <lastmod>2022-02-01</lastmod>
          <changefreq>daily</changefreq>

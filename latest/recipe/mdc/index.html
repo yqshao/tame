@@ -278,8 +278,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../sfac/" class="md-nav__link">
-        tame sfac
+      <a href="../onsager/" class="md-nav__link">
+        tame onsager
       </a>
     </li>
   
@@ -290,8 +290,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../rdf/" class="md-nav__link">
-        tame rdf
+      <a href="../persist/" class="md-nav__link">
+        tame persist
       </a>
     </li>
   
@@ -314,8 +314,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../persist/" class="md-nav__link">
-        tame persist
+      <a href="../rdf/" class="md-nav__link">
+        tame rdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sfac/" class="md-nav__link">
+        tame sfac
       </a>
     </li>
   
@@ -505,7 +517,7 @@
 <p>Computes the mean displacement correlation (MDC) for the determination of self
 or distinct diffusion coefficients. The options thereof are detailed below:</p>
 <h2 id="usage">Usage</h2>
-<div class="highlight"><pre><span></span><code>tame mcd --tags <span class="s1">&#39;3 4 3,4:SSP:3.0,4.0&#39;</span> traj.dump
+<div class="highlight"><pre><span></span><code>tame mcd -t <span class="s1">&#39;3 4 3,4:SSP:3.0,4.0&#39;</span> traj.dump
 </code></pre></div>
 <h2 id="options">Options</h2>
 <table>
@@ -543,7 +555,7 @@ or distinct diffusion coefficients. The options thereof are detailed below:</p>
 <td>Time window for MDC fitting [ps]</td>
 </tr>
 <tr>
-<td><code>--tag [-t]</code></td>
+<td><code>--tags [-t]</code></td>
 <td><code>'1'</code></td>
 <td>Tags definitions, see <a href="##Tag definitions">below</a></td>
 </tr>
@@ -647,13 +659,13 @@ MDC is linear to time.</p>
         </a>
       
       
-        <a href="../sfac/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../onsager/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              tame sfac
+              tame onsager
             </div>
           </div>
           <div class="md-footer__button md-icon">

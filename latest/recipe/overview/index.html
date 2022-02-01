@@ -264,8 +264,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../sfac/" class="md-nav__link">
-        tame sfac
+      <a href="../onsager/" class="md-nav__link">
+        tame onsager
       </a>
     </li>
   
@@ -276,8 +276,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../rdf/" class="md-nav__link">
-        tame rdf
+      <a href="../persist/" class="md-nav__link">
+        tame persist
       </a>
     </li>
   
@@ -300,8 +300,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../persist/" class="md-nav__link">
-        tame persist
+      <a href="../rdf/" class="md-nav__link">
+        tame rdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sfac/" class="md-nav__link">
+        tame sfac
       </a>
     </li>
   
@@ -481,7 +493,7 @@ interest. </p>
 <p>In general, the TAME commands takes a (or multiple) trajectory file as input.
 For instance, the above command computes the self and distinct diffusion
 coefficient, with the mean displacement correlation (MDC) of the atoms.</p>
-<div class="highlight"><pre><span></span><code>tame diff mcd traj.dump --seg 5000 --dt 5 --tag &#39;1 1,1&#39;
+<div class="highlight"><pre><span></span><code>tame diff mcd traj.dump --seg 5000 --dt 5 --tags &#39;1 1,1&#39;
 </code></pre></div>
 <p>A handy feature is that all TAME recipes allows for the split of the
 trajectories into segments of equal lengths, and perform the analysis on them
@@ -508,6 +520,10 @@ documentation pages.</p>
 <tr>
 <td><a href="../mdc/"><code>tame mdc</code></a></td>
 <td>mean displacement correlation</td>
+</tr>
+<tr>
+<td><a href="../onsager/"><code>tame onsager</code></a></td>
+<td>Onsager coefficients</td>
 </tr>
 <tr>
 <td><a href="../pmsd/"><code>tame pmsd</code></a></td>

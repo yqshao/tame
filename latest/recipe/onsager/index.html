@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://yqshao.github.io/tame/latest/recipe/pmsd/">
+        <link rel="canonical" href="https://yqshao.github.io/tame/latest/recipe/onsager/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.4">
     
     
       
-        <title>tame pmsd - TAME Documentation</title>
+        <title>tame onsager - TAME Documentation</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#polarization-mean-squared-displacement" class="md-skip">
+        <a href="#onsager-coefficients" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              tame pmsd
+              tame onsager
             
           </span>
         </div>
@@ -215,30 +215,6 @@
             
   
   
-  
-    <li class="md-nav__item">
-      <a href="../onsager/" class="md-nav__link">
-        tame onsager
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../persist/" class="md-nav__link">
-        tame persist
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
     
   
   
@@ -251,12 +227,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          tame pmsd
+          tame onsager
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        tame pmsd
+        tame onsager
       </a>
       
         
@@ -288,8 +264,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ion-definitions" class="md-nav__link">
-    Ion definitions
+  <a href="#notes" class="md-nav__link">
+    Notes
   </a>
   
 </li>
@@ -298,6 +274,30 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persist/" class="md-nav__link">
+        tame persist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pmsd/" class="md-nav__link">
+        tame pmsd
+      </a>
     </li>
   
 
@@ -480,8 +480,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ion-definitions" class="md-nav__link">
-    Ion definitions
+  <a href="#notes" class="md-nav__link">
+    Notes
   </a>
   
 </li>
@@ -499,11 +499,10 @@
               
                 
                 
-                <h1 id="polarization-mean-squared-displacement">Polarization Mean Squared Displacement</h1>
-<p>Computing the ionic conductivity of from the Green-Kubo formula in the Einstein
-form, using the polarization mean squared displacement (PMSD).</p>
+                <h1 id="onsager-coefficients">Onsager coefficients</h1>
+<p>Computing the onsager coefficients (RDF).</p>
 <h2 id="usage">Usage</h2>
-<div class="highlight"><pre><span></span><code>tame pmsd -c <span class="m">3</span> -a <span class="m">4</span> traj.dump
+<div class="highlight"><pre><span></span><code>tame onsager -t <span class="s1">&#39;3,3 3,4&#39;</span> traj.dump
 </code></pre></div>
 <h2 id="options">Options</h2>
 <table>
@@ -536,53 +535,30 @@ form, using the polarization mean squared displacement (PMSD).</p>
 <td>Trajectory format</td>
 </tr>
 <tr>
-<td><code>--max-dt</code></td>
-<td><code>20</code></td>
-<td>Time window for PMSD</td>
+<td><code>--tags [-t]</code></td>
+<td><code>'1,1'</code></td>
+<td>Space separated tags</td>
 </tr>
 <tr>
-<td><code>--c-type [-c]</code></td>
-<td><code>3</code></td>
-<td>Cation definitions, see <a href="##Ion definitions">below</a></td>
-</tr>
-<tr>
-<td><code>--a-type [-a]</code></td>
-<td><code>4</code></td>
-<td>Anion definitions, see <a href="##Ion definitions">below</a></td>
-</tr>
-<tr>
-<td><code>--temp [-T]</code></td>
-<td><code>293</code></td>
-<td>Temperature [K]</td>
-</tr>
-<tr>
-<td><code>--fit-min</code></td>
-<td><code>5</code></td>
-<td>Minimal time for msd fit [ps]</td>
-</tr>
-<tr>
-<td><code>--fit-max</code></td>
-<td><code>20</code></td>
-<td>Maximal time for msd fit [ps]</td>
-</tr>
-<tr>
-<td><code>--pmsd-out</code></td>
-<td><code>pmsd</code></td>
-<td>PMSD output</td>
-</tr>
-<tr>
-<td><code>--cond-out</code></td>
-<td><code>cond</code></td>
-<td>conductivity output</td>
+<td><code>--corr-out</code></td>
+<td><code>corr</code></td>
+<td>Correlation function output</td>
 </tr>
 </tbody>
 </table>
-<h2 id="ion-definitions">Ion definitions</h2>
+<h2 id="notes">Notes</h2>
+<p>The function outputs the volume-normalized displacement correlation function:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview"> \mathrm{corr}(t) = \frac{\langle \sum_i \Delta r_{i,\alpha}(t) \cdot \Delta
+r_{j,\beta}(t)\rangle}{\langle V \rangle} </div>
+<script type="math/tex; mode=display"> \mathrm{corr}(t) = \frac{\langle \sum_i \Delta r_{i,\alpha}(t) \cdot \Delta
+r_{j,\beta}(t)\rangle}{\langle V \rangle} </script>
+</div>
+<p>with <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> and <span class="arithmatex"><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span> specified by the tags.</p>
 <div class="admonition warning">
 <p class="admonition-title">Partially implemented</p>
-<p>Currently, only monovalent ions are supported for this command. The ion definition
-might be improved in the future to support more flexible definitions (multiple ionic 
-species and multivalent ions) </p>
+<p>Currently, the command does not perform fitting and does not output the Onsager coefficients
+directly.</p>
 </div>
                 
               
@@ -602,7 +578,7 @@ species and multivalent ions) </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../persist/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../mdc/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -611,19 +587,19 @@ species and multivalent ions) </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              tame persist
+              tame mdc
             </div>
           </div>
         </a>
       
       
-        <a href="../rdf/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../persist/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              tame rdf
+              tame persist
             </div>
           </div>
           <div class="md-footer__button md-icon">
