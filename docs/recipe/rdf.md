@@ -18,5 +18,5 @@ tame rdf -t '3,3 3,4' traj.dump
 | `--format [-f]`    | `auto`  | Trajectory format                |
 | `--rmax`           | `30.0`  | Max radial distance              |
 | `--rbin`           | `0.1`   | Radial distance bin size         |
-| `--tag [-t]`       | `'1,1'` | Space separated tags             |
+| `--tags [-t]`      | `'1,1'` | Space separated tags             |
 | `--rdf-out`        | `rdf`   | RDF output                       |

@@ -11,7 +11,7 @@ For instance, the above command computes the self and distinct diffusion
 coefficient, with the mean displacement correlation (MDC) of the atoms.
 
 ```
-tame diff mcd traj.dump --seg 5000 --dt 5 --tag '1 1,1'
+tame diff mcd traj.dump --seg 5000 --dt 5 --tags '1 1,1'
 ```
 
 A handy feature is that all TAME recipes allows for the split of the
@@ -32,6 +32,7 @@ documentation pages.
 |------------------------------|----------------------------------------|
 | [`tame jacf`](jacf.md)       | current autocorrelation function       |
 | [`tame mdc`](mdc.md)         | mean displacement correlation          |
+| [`tame onsager`](onsager.md) | Onsager coefficients                   |
 | [`tame pmsd`](pmsd.md)       | polarization mean squared displacement |
 | [`tame persist`](persist.md) | persistent time                        |
 | [`tame rdf`](rdf.md)         | radial distribution function           |

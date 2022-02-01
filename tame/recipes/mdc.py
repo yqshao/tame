@@ -47,14 +47,14 @@ def make_mdc(data, tag, n_cache):
                options_metavar='[options]',
                short_help='mean displacement correlation')
 @load_traj_seg # general input handler
-@click.option('--max-dt',    metavar='', default=30.0,   show_default=True)
-@click.option('-t', '--tag', metavar='', default='3',    show_default=True)
-@click.option('--mdc-out',   metavar='', default='mdc',  show_default=True)
-@click.option('--fit-min',   metavar='', default=5.0,    show_default=True)
-@click.option('--fit-max',   metavar='', default=20.0,   show_default=True)
-@click.option('--diff-out',  metavar='', default='diff', show_default=True)
+@click.option('--max-dt',     metavar='', default=30.0,   show_default=True)
+@click.option('-t', '--tags', metavar='', default='3',    show_default=True)
+@click.option('--mdc-out',    metavar='', default='mdc',  show_default=True)
+@click.option('--fit-min',    metavar='', default=5.0,    show_default=True)
+@click.option('--fit-max',    metavar='', default=20.0,   show_default=True)
+@click.option('--diff-out',   metavar='', default='diff', show_default=True)
 def mdc_cmd(seg, dt, #
-            tag, max_dt, fit_min, fit_max, mdc_out, diff_out):
+            tags, max_dt, fit_min, fit_max, mdc_out, diff_out):
     """Commputing the self/distinct diffusion coefficients using mean
     displacement correlations (MDC).
 
@@ -65,16 +65,18 @@ def mdc_cmd(seg, dt, #
     coord = unwrap(seg['coord'], seg['cell'])
 
     corrs = {}
-    for t in tag.split(' '):
-        corrs.update(make_mdc(seg, t, n_cache))
+    for tag in tags.split(' '):
+        corrs.update(make_mdc(seg, tag, n_cache))
     keys = list(corrs.keys())
-    labels = [f'D_{k}' for k in list(corrs.keys())]
-
+    # run
     seg.run()
+    # generating outputs
     TIME = np.arange(0, n_cache)*dt
     CORRS = {'t': TIME}
-    diffs = {}
+    DIFFS = {}
     for k in keys:
-        CORRS[k] = corrs[k].eval()
-        diffs[k] = 1/6*linear_fit(TIME, CORRS[k], fit_min, fit_max)[0]
-    return {mdc_out: CORRS, diff_out: diffs}
+        CORR = corrs[k].eval()
+        CORRS[f'D_{k}'] = CORR
+        if 'cnt' not in k:
+            DIFFS[f'D_{k}'] = 1/6*linear_fit(TIME, CORR, fit_min, fit_max)[0]
+    return {mdc_out: CORRS, diff_out: DIFFS}

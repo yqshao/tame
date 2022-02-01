@@ -6,7 +6,7 @@ or distinct diffusion coefficients. The options thereof are detailed below:
 ## Usage
 
 ```bash
-tame mcd --tags '3 4 3,4:SSP:3.0,4.0' traj.dump
+tame mcd -t '3 4 3,4:SSP:3.0,4.0' traj.dump
 ```
 
 ## Options
@@ -18,7 +18,7 @@ tame mcd --tags '3 4 3,4:SSP:3.0,4.0' traj.dump
 | `--seg [-s]`       | `5000`  | Segment length [ps]                              |
 | `--format [-f]`    | `auto`  | Trajectory format                                |
 | `--max-dt`         | `20`    | Time window for MDC fitting [ps]                 |
-| `--tag [-t]`       | `'1'`   | Tags definitions, see [below](##Tag definitions) |
+| `--tags [-t]`      | `'1'`   | Tags definitions, see [below](##Tag definitions) |
 | `--fit-min`        | `5`     | Minimal time for msd fit [ps]                    |
 | `--fit-max`        | `20`    | Maximal time for msd fit [ps]                    |
 | `--mdc-out`        | `mdc`   | MDC output                                       |
