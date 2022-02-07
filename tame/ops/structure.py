@@ -81,7 +81,7 @@ class NeighbourList():
         all_j = self.all_j.val
         n_repeat = rc * np.linalg.norm(np.linalg.inv(cell), axis=0)
         n_repeat = np.ceil(n_repeat)
-        repeats = np.array([*itertools.product(*[np.arange(-n, n+1) for n in [1,1,1]])])
+        repeats = np.array([*itertools.product(*[np.arange(-n, n+1) for n in n_repeat])])
         coord_j_rep = coord_j[:,None,:] + repeats[None,:,:]@cell.T
         coord_j_rep = coord_j_rep.reshape([-1,3])
         idx_j_rep   = np.stack([np.arange(len(all_j))]*repeats.shape[0],
