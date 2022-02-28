@@ -3,19 +3,19 @@ site_url: https://yqshao.github.io/tame
 nav:
   - Home: index.md
   - Recipes:
-    - Overview:     recipe/overview.md
-    - tame jacf:    recipe/jacf.md
-    - tame mdc:     recipe/mdc.md
-    - tame onsager: recipe/onsager.md
-    - tame persist: recipe/persist.md
-    - tame pmsd:    recipe/pmsd.md
-    - tame rdf:     recipe/rdf.md
-    - tame sfac:    recipe/sfac.md
+      - Overview: recipe/overview.md
+      - tame jacf: recipe/jacf.md
+      - tame mdc: recipe/mdc.md
+      - tame onsager: recipe/onsager.md
+      - tame persist: recipe/persist.md
+      - tame pmsd: recipe/pmsd.md
+      - tame rdf: recipe/rdf.md
+      - tame sfac: recipe/sfac.md
   - Developing:
-    - Overview: developing/overview.md
-    - Concepts: developing/concepts.md
-    - Backends: developing/backends.md
-    - Write a recipe: developing/write_a_recipe.md
+      - Overview: developing/overview.md
+      - Concepts: developing/concepts.md
+      - Operations: developing/operations.md
+      - Write a recipe: developing/write_a_recipe.md
   - Contributing: contributing.md
   - About: about.md
 plugins:

@@ -5,12 +5,11 @@ This page describes basic concepts and classes used in the TAME library: the
 
 ![Concepts Illustration](../figs/concepts.svg){width='330'}
 
-
 ## Trajectory
 
 In TAME, a trajectory is a continuous stream of "frames", the `Trajectory`
 object can be loaded from one or several trajectory files from MD programs, e.g:
-    
+
 ```Python
 from tame.io import load_traj
 traj = load_traj('prod.dump')
@@ -18,11 +17,12 @@ traj = load_traj('prod.dump')
 
 The `load_traj` function is a general interface to load trajectories. TAME used
 the established MDAnalysis library to load trajectories produced by different MD
-programs. To read more about supported formats and options, see
-[Backends/IO](backends.md#IO) for details. 
+programs.
+
+<!-- To read more about supported formats and options, see -->
+<!-- [Backends/IO](backends.md#IO) for details. -->
 
 ## FrameArray
-
 
 `FrameArray` is the core class in TAME. A `FrameArray` means an array-like data
 structure associated with a certain frame of the trajectory. The simplest of
@@ -41,6 +41,7 @@ print(R_0)
 Like the Numpy arrays, basic arithmetic operations and simple math functions on
 the `FrameArray`s are supported. In addition, a number of operations to compute
 static (e.g., neighbor list, radial distribution functions) or time-dependent
-functiosn (e.g., time average or correlation functions) are implemented. The
-available operations and their efficiency depend on the implementation of the
-computation backend, see [Backends/Compute](backends.compute) for details.
+functiosn (e.g., time average or correlation functions) are implemented.
+
+<!-- The available operations and their efficiency depend on the implementation of -->
+<!-- the computation backend, see [Backends/Compute](backends.compute) for details. -->
