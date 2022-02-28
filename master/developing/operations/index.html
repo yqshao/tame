@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://yqshao.github.io/tame/master/developing/backends/">
+        <link rel="canonical" href="https://yqshao.github.io/tame/master/developing/operations/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
     
     
       
-        <title>Backends - TAME Documentation</title>
+        <title>Operations - TAME Documentation</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Backends
+              Operations
             
           </span>
         </div>
@@ -380,9 +380,47 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Backends
+        Operations
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time-dependent-operations" class="md-nav__link">
+    Time-dependent Operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-functions" class="md-nav__link">
+    Basic Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -459,6 +497,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time-dependent-operations" class="md-nav__link">
+    Time-dependent Operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-functions" class="md-nav__link">
+    Basic Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -476,36 +536,70 @@ Currently, the computations are performed with the Numpy library. Other
 computation backends might be implemented in hte future.</p>
 <div class="admonition danger">
 <p class="admonition-title">documentation in construction</p>
+<p>The documentation now contains an <strong>incomplete</strong> list of available
+operations in TAME, with very brief introductions of what they do,
+a more detailed API documentation should be available later.</p>
 </div>
-<h3 id="basic-functions">Basic functions</h3>
-<p>The below functions are basic mathematical operations that are available between
-(aliased as <code>tm</code> below), </p>
+<h2 id="time-dependent-operations">Time-dependent Operations</h2>
+<p>Below lists operations that are time-dependent, which means the value of each
+frame depend on previous frames.</p>
 <table>
 <thead>
 <tr>
-<th>operator</th>
 <th>function</th>
-<th>description</th>
+<th>operation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><code>tm.plus</code></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>tm.minus</code></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>tm.product</code></td>
-<td></td>
+<td><code>tm.op.unwrap</code></td>
+<td>unwraps the coordinate <sup id="fnref:unwrap"><a class="footnote-ref" href="#fn:unwrap">1</a></sup></td>
 </tr>
 </tbody>
 </table>
+<h2 id="basic-functions">Basic Functions</h2>
+<p>The below functions are basic mathematical operations, those functions are
+also defined as python operators between <code>tm.FrameArray</code>s.</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>syntax</th>
+<th>operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tm.plus</code></td>
+<td><code>a+b</code></td>
+<td>addition</td>
+</tr>
+<tr>
+<td><code>tm.minus</code></td>
+<td><code>a-b</code></td>
+<td>subtraction</td>
+</tr>
+<tr>
+<td><code>tm.product</code></td>
+<td><code>a*b</code></td>
+<td>multiplication</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:unwrap">
+<p>TAME unwraps the trajectory using the minimal displacement vector at each
+time step, to avoid possible artifact when unwrapping constant-pressure
+simulations, which is discussed by von Bülow <em>et al.</em> in
+detail.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>&#160;<a class="footnote-backref" href="#fnref:unwrap" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>Sören von Bülow, Jakob Tómas Bullerjahn, and Gerhard Hummer. Systematic errors in diffusion coefficients from long-time molecular dynamics simulations at constant pressure. <em>J. Chem. Phys.</em>, 153:021101, 2020. <a href="https://doi.org/10.1063/5.0008316">doi:10.1063/5.0008316</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
               
             </article>

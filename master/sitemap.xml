@@ -36,12 +36,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://yqshao.github.io/tame/master/developing/backends/</loc>
+         <loc>https://yqshao.github.io/tame/master/developing/concepts/</loc>
          <lastmod>2022-02-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://yqshao.github.io/tame/master/developing/concepts/</loc>
+         <loc>https://yqshao.github.io/tame/master/developing/operations/</loc>
          <lastmod>2022-02-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
