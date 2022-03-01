@@ -6,10 +6,11 @@ from tame.recipes.utils import load_traj_seg
                options_metavar='[options]',
                short_help='onsager coefficients')
 @load_traj_seg # general input handler
-@click.option('--max-dt',     metavar='', default=30.0,   show_default=True)
+@click.option('--max-dt',     metavar='', default=20.0,   show_default=True)
+@click.option('--rcom',       metavar='', default=None,   show_default=True)
 @click.option('-t', '--tags', metavar='', default='3',    show_default=True)
 @click.option('--corr-out',   metavar='', default='corr', show_default=True)
-def onsager_cmd(seg, dt, tags, max_dt, corr_out):
+def onsager_cmd(seg, dt, rcom, tags, max_dt, corr_out):
     """Computing the onsager coefficients with the mean displacement correlation
     between species.
 
@@ -27,21 +28,31 @@ def onsager_cmd(seg, dt, tags, max_dt, corr_out):
     i_types = [int(tag.split(',')[0]) for tag in tags]
     j_types = [int(tag.split(',')[1]) for tag in tags]
     dP = {} # cache the displacement for each type of interest
+
+    # Build correlations
+    coord = unwrap(seg['coord'], seg['cell'])
+    if rcom is not None:
+        am = {int(k):float(v) for k,v in map(lambda x:x.split(':'), rcom.split(','))}
+        masses = np.array([am[e] for e in seg['elems'].eval()])
+        com = np.sum(coord*masses[:,None], axis=0, keepdims=True)/masses.sum()
+        coord = coord-com
+
     for t in np.union1d(i_types, j_types):
         t_idx = (seg['elems'] == t)
-        P_t = np.sum(unwrap(seg['coord'][t_idx], seg['cell']), axis=0)
+        P_t = np.sum(coord[t_idx], axis=0)
         dP[t] = tcache(P_t, n_cache) - P_t[None, :]
+
     corrs = {} # build the correlation functions here
     for tag, i, j in zip(tags, i_types, j_types):
         corrs[tag] = tavg(np.sum(dP[i]*dP[j], axis=1), dropnan='partial')
-    v = tavg(seg['cell'][0]*seg['cell'][1]*seg['cell'][2])
-    # run
+
+    # Run
     seg.run()
-    V = v.eval()
-    # generating output
+
+    # Generating output
     TIME = np.arange(0, n_cache)*dt
     CORRS = {'t': TIME}
     for tag in tags: # correlation functions are normalized wrt the volume!
-        CORRS[tag] = corrs[tag].eval()/V
+        CORRS[tag] = corrs[tag].eval()
 
     return {corr_out: CORRS}
