@@ -586,8 +586,8 @@
 </tr>
 <tr>
 <td><code>--rcom</code></td>
-<td><code>False</code></td>
-<td>Correlation function output</td>
+<td><code>None</code></td>
+<td>Remove COM (see <a href="#Notes">notes</a>)</td>
 </tr>
 <tr>
 <td><code>--tags [-t]</code></td>
@@ -602,6 +602,12 @@
 </tbody>
 </table>
 <h2 id="notes">Notes</h2>
+<div class="admonition warning">
+<p class="admonition-title">Partially implemented</p>
+<p>Currently, the command does not perform fitting and does not output the Onsager coefficients
+directly.</p>
+</div>
+<h3 id="correlation-function">Correlation function</h3>
 <p>The function outputs the displacement correlation function:</p>
 <div class="arithmatex">
 <div class="MathJax_Preview">
@@ -614,11 +620,9 @@ r_{j,\beta}(t)\rangle
 </script>
 </div>
 <p>with <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> and <span class="arithmatex"><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span> specified by the tags.</p>
-<div class="admonition warning">
-<p class="admonition-title">Partially implemented</p>
-<p>Currently, the command does not perform fitting and does not output the Onsager coefficients
-directly.</p>
-</div>
+<h3 id="-rcom-option"><code>--rcom</code> option</h3>
+<p>When specified, remove the center of mass motion of the entire system. A string
+must supplied, containing the mass of <strong>all</strong> species, e.g. <code>--rcom 1:1.008,3:6.941,6:12.010</code>.</p>
 
               
             </article>
