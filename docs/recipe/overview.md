@@ -1,8 +1,7 @@
 # TAME Recipes 
 
 In TAME, recipes are scripts for specific properties. All recipes can be
-accessed from the `tame` command line tool, arranged by the property of
-interest. 
+accessed from the `tame` command line tool. 
 
 ## General usage
 
@@ -11,7 +10,7 @@ For instance, the above command computes the self and distinct diffusion
 coefficient, with the mean displacement correlation (MDC) of the atoms.
 
 ```
-tame diff mcd traj.dump --seg 5000 --dt 5 --tags '1 1,1'
+tame mdc traj.dump --seg 5000 --dt 5 --tags '1 1,1'
 ```
 
 A handy feature is that all TAME recipes allows for the split of the

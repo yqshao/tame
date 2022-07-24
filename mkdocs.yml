@@ -1,32 +1,48 @@
 site_name: TAME Documentation
 site_url: https://yqshao.github.io/tame
+repo_url: https://github.com/yqshao/tame
+repo_name: yqshao/tame
 nav:
   - Home: index.md
   - Recipes:
       - Overview: recipe/overview.md
-      - tame jacf: recipe/jacf.md
-      - tame mdc: recipe/mdc.md
-      - tame onsager: recipe/onsager.md
-      - tame persist: recipe/persist.md
-      - tame pmsd: recipe/pmsd.md
-      - tame rdf: recipe/rdf.md
-      - tame sfac: recipe/sfac.md
-  - Developing:
-      - Overview: developing/overview.md
-      - Concepts: developing/concepts.md
-      - Operations: developing/operations.md
-      - Write a recipe: developing/write_a_recipe.md
-  - Contributing: contributing.md
-  - About: about.md
+      - Dynamics:
+        - tame mdc: recipe/mdc.md
+        - tame jacf: recipe/jacf.md
+        - tame onsager: recipe/onsager.md
+        - tame persist: recipe/persist.md
+        - tame pmsd: recipe/pmsd.md
+      - Structure:
+        - tame rdf: recipe/rdf.md
+        - tame sfac: recipe/sfac.md
+  - Library:
+      - Overview: lib/overview.md
+      - Data types:
+        - tame.Trajectory: lib/trajectory.md
+        - tame.Operation: lib/operation.md
+      - Modules:
+        - tame.io: lib/io.md
+        - tame.ops: lib/ops.md
+        - tame.units: lib/units.md
+      - Examples:
+        - Hydroxyl ion: lib/hydroxyl.md
+        - 2D RDF: lib/2d_rdf.md
+  - About:
+    - About TAME: about.md
+    - Contributing: contributing.md
 plugins:
   - mike
   - bibtex:
       bib_file: "docs/references.bib"
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+  custom_dir: docs/overrides
 markdown_extensions:
   - toc:
-      toc_depth: 2
+      toc_depth: 3
   - admonition
   - attr_list
   - footnotes
