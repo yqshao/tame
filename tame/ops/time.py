@@ -1,4 +1,5 @@
 """ Time related functions"""
+# -*- coding: utf-8 -*-
 import numpy as np
 from tame import FrameArray
 

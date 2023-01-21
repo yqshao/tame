@@ -8,12 +8,19 @@ from tame.units import units, kB, e
 from tame.recipes.utils import load_traj_seg # general innput handler
 
 
-def make_mdc(data, tags, n_cache):
+def make_mdc(data, tags, n_cache, rcom):
     # helper function to build the correlation functions
     corrs = {}
     all_dr = {}
     d_cache = {}
     coord = unwrap(data['coord'], data['cell'])
+
+    if rcom is not None:
+        am = {int(k):float(v) for k,v in map(lambda x:x.split(':'), rcom.split(','))}
+        masses = np.array([am[e] for e in data['elems'].eval()])
+        com = np.sum(coord*masses[:,None], axis=0, keepdims=True)/masses.sum()
+        coord = coord-com
+
     def get_dr(t): # dr is reconstructed at each call to make_corrs
         if t not in all_dr.keys():
             r_t = coord[data['elems'].eval()==t]
@@ -54,12 +61,13 @@ def make_mdc(data, tags, n_cache):
                short_help='mean displacement correlation')
 @load_traj_seg # general input handler
 @click.option('--max-dt',     metavar='', default=30.0,   show_default=True)
+@click.option('--rcom',       metavar='', default=None,   show_default=True)
 @click.option('-t', '--tags', metavar='', default='3',    show_default=True)
 @click.option('--mdc-out',    metavar='', default='mdc',  show_default=True)
 @click.option('--fit-min',    metavar='', default=5.0,    show_default=True)
 @click.option('--fit-max',    metavar='', default=20.0,   show_default=True)
 @click.option('--diff-out',   metavar='', default='diff', show_default=True)
-def mdc_cmd(seg, dt, #
+def mdc_cmd(seg, dt, rcom, #
             tags, max_dt, fit_min, fit_max, mdc_out, diff_out):
     """Commputing the self/distinct diffusion coefficients using mean
     displacement correlations (MDC).
@@ -69,7 +77,7 @@ def mdc_cmd(seg, dt, #
     """
     n_cache = int(max_dt/dt)
 
-    corrs = make_mdc(seg, tags, n_cache)
+    corrs = make_mdc(seg, tags, n_cache, rcom)
     keys = list(corrs.keys())
     # run
     seg.run()
