@@ -34,22 +34,12 @@ plugins:
   - mike
   - bibtex:
       bib_file: "docs/references.bib"
-theme:
-  name: material
-  features:
-    - navigation.tabs
-    - navigation.sections
-  custom_dir: docs/overrides
 markdown_extensions:
   - toc:
       toc_depth: 3
   - admonition
   - attr_list
   - footnotes
-  - pymdownx.highlight
-  - pymdownx.arithmatex
-  - pymdownx.tasklist
-  - pymdownx.superfences
 extra:
   version:
     provider: mike
