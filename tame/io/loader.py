@@ -10,7 +10,8 @@ from trajectory files, which includes:
 
 """
 def guess_format(fname):
-    if fname.endswith('.dump'):
+    import re
+    if re.search(r'\.dump(\.xz|\.gz)?$', fname):
         return 'lammps-dump'
     if fname.endswith('.xtc'):
         return 'gromacs-trr'

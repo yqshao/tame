@@ -3,7 +3,11 @@
 import numpy as np
 
 def _dump_generator(fname):
-    f = open(fname)
+    import re, lzma
+    if re.search(r'(\.xz|\.gz)$', fname):
+        f = lzma.open(fname, mode='rt')
+    else:
+        f = open(fname)
     [next(f) for _ in range(8)]
     l = f.readline()
     fmt = l.split()[2:]
@@ -13,8 +17,7 @@ def _dump_generator(fname):
     except ValueError:
         idx_speed = False
     idx_elem = fmt.index('type')
-    f.close()
-    f = open(fname)
+    f.seek(0)
     [next(f) for _ in range(3)]
     natoms = int(f.readline())
     def get_cell(line): return float(line.split()[1]) - float(line.split()[0])
