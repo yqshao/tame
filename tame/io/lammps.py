@@ -8,7 +8,10 @@ def _dump_generator(fname):
     l = f.readline()
     fmt = l.split()[2:]
     idx_coord = [fmt.index(key) for key in ['x','y','z']]
-    idx_speed = [fmt.index(key) for key in ['vx','vy','vz']]
+    try:
+        idx_speed = [fmt.index(key) for key in ['vx','vy','vz']]
+    except ValueError:
+        idx_speed = False
     idx_elem = fmt.index('type')
     f.close()
     f = open(fname)
@@ -28,14 +31,16 @@ def _dump_generator(fname):
             for i in range(natoms):
                 line = f.readline().split()
                 coord.append([line[idx] for idx in idx_coord])
-                speed.append([line[idx] for idx in idx_speed])
+                if idx_speed:
+                    speed.append([line[idx] for idx in idx_speed])
                 elems.append(line[idx_elem])
             elems = np.array(elems, np.int32)
             data = {
                 'coord': np.array(coord, np.float64),
-                'speed': np.array(speed, np.float64),
                 'elems': elems,
                 'cell': cell}
+            if idx_speed:
+                data['speed'] = np.array(speed, np.float64)
             yield data
 
 
