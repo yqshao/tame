@@ -40,8 +40,8 @@ def load_traj_seg(func):
 
     @click.argument('trajs', metavar='trajs', nargs=-1, required=True)
     @click.option('-top',    metavar='', default=None, help="[default: None]")
-    @click.option('-dt',     metavar='', default=1,    show_default=True)
-    @click.option('-s', '--seg',    metavar='', default=5000, show_default=True)
+    @click.option('-dt',     metavar='', default=1.0, show_default=True)
+    @click.option('-s', '--seg',    metavar='', default=5000.0, show_default=True)
     @click.option('-f', '--format', metavar='', default='auto', show_default=True)
     @wraps(func)
     def func_seg(trajs, top, format, seg, dt, **kwargs):

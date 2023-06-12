@@ -8,7 +8,7 @@ from tame.recipes.utils import load_traj_seg
 @load_traj_seg # general input handler
 @click.option('--max-dt',     metavar='', default=20.0,   show_default=True)
 @click.option('--rcom',       metavar='', default=None,   show_default=True)
-@click.option('-t', '--tags', metavar='', default='3',    show_default=True)
+@click.option('-t', '--tags', metavar='', default='3,3',  show_default=True)
 @click.option('--corr-out',   metavar='', default='corr', show_default=True)
 def onsager_cmd(seg, dt, rcom, tags, max_dt, corr_out):
     """Computing the onsager coefficients with the mean displacement correlation
