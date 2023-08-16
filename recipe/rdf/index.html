@@ -1,0 +1,351 @@
+<!--
+  This Basic theme serves as an example for how to create other
+  themes by demonstrating the features with minimal HTML and CSS.
+  Comments like this will be through the code to explain briefly
+  what each feature is and point you to the MkDocs documentation
+  to find out more.
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!--
+    The page_title contains the title for a page as shown in the navigation.
+    Site name contains the name as defined in the mkdocs.yml
+  -->
+  <title>tame rdf - TAME</title>
+
+  <link rel="stylesheet" href="../../css/theme.css">
+  <link rel="stylesheet" href="../../css/pygments.css">
+  <link rel="icon" href="data:,">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400;1,700&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    $(document).ready(function(){
+          $('table').wrap('<div class="table-wrapper"></div>');
+    });
+  </script>
+
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+</head>
+
+<body>
+  <header class="header">
+    <ul>
+      <li id="logo">
+        <a href="../..">TAME</a>
+      </li>
+      
+      
+  <li  class="tab" >
+    <a href="../.." class="">
+      Home
+    </a>
+  </li>
+
+      
+      
+  
+  <li class="active tab" >
+    <a href="../overview/">
+      Recipes
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../../lib/overview/">
+      Library
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../../about/">
+      About
+    </a>
+  </li>
+
+      
+      <li class="tools">
+        
+          <a id="nav-toggle" class="tool" onclick="nav_toggle()">
+        
+          <svg><use xlink:href="../../svg/sprite.svg#menu-2"></use></svg>
+        </a>
+        <script>
+           function nav_toggle() {
+               var bar = document.getElementById("tab-bar");
+               if (bar.style.display === "none") {
+                   bar.style.display = "block";
+               } else {
+                   bar.style.display = "none";
+               }
+           }
+          function nav_reset() {
+              var bar = document.getElementById("tab-bar");
+              if (window.innerWidth>950){
+                  bar.style.display = "block";
+              } else {
+                  bar.style.display = "none";
+              }
+          }
+          window.onresize = nav_reset;
+        </script>
+        
+        <a class="tool" href="https://github.com/yqshao/tame">
+          <svg><use xlink:href="../../svg/sprite.svg#brand-github"></use></svg>
+          <span>yqshao/tame</span>
+        </a>
+        
+      </li>
+    </ul>
+  </header>
+
+
+  <div id="main">
+    <div id="tab-bar">
+      <ul>
+      
+       
+  <li  class="tab" >
+    <a href="../.." class="">
+      Home
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li class="active tab" >
+    <a href="../overview/">
+      Recipes
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+                 
+                   
+    <li >
+      <a href="../overview/" class="">
+        Overview
+      </a>
+    </li>
+
+                 
+                   
+  <a class="nav-title" > Dynamics </a>
+  
+    
+    <li >
+      <a href="../onsager/" class="">
+        tame onsager
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../mdc/" class="">
+        tame mdc
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../pmsd/" class="">
+        tame pmsd
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../jacf/" class="">
+        tame jacf
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../persist/" class="">
+        tame persist
+      </a>
+    </li>
+
+  
+
+                 
+                   
+  <a class="nav-title" > Structure </a>
+  
+    
+    <li class="active">
+      <a href="./" class="">
+        tame rdf
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../sfac/" class="">
+        tame sfac
+      </a>
+    </li>
+
+  
+
+                 
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../../lib/overview/">
+      Library
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../../about/">
+      About
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+      </ul>
+    </div>
+
+    <div id="content">
+      <h1 id="radial-ditribution-function">Radial ditribution function</h1>
+<p>Computing the radial distribution function (RDF).</p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><span></span><code>tame<span class="w"> </span>rdf<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;3,3 3,4&#39;</span><span class="w"> </span>traj.dump
+</code></pre></div>
+<h2 id="options">Options</h2>
+<table>
+<thead>
+<tr>
+<th>Option [shorthand]</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-top</code></td>
+<td><code>None</code></td>
+<td>Topology file</td>
+</tr>
+<tr>
+<td><code>-dt</code></td>
+<td><code>1</code></td>
+<td>Time step of the trajectory [ps]</td>
+</tr>
+<tr>
+<td><code>--seg [-s]</code></td>
+<td><code>5000</code></td>
+<td>Segment length [ps]</td>
+</tr>
+<tr>
+<td><code>--format [-f]</code></td>
+<td><code>auto</code></td>
+<td>Trajectory format</td>
+</tr>
+<tr>
+<td><code>--rmax</code></td>
+<td><code>30.0</code></td>
+<td>Max radial distance</td>
+</tr>
+<tr>
+<td><code>--rbin</code></td>
+<td><code>0.1</code></td>
+<td>Radial distance bin size</td>
+</tr>
+<tr>
+<td><code>--tags [-t]</code></td>
+<td><code>'1,1'</code></td>
+<td>Space separated tags</td>
+</tr>
+<tr>
+<td><code>--rdf-out</code></td>
+<td><code>rdf</code></td>
+<td>RDF output</td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+  </div>
+
+  <div class="page">
+    <div class="page-prev">
+      
+      <a href="../persist/" title="tame persist"><span>«</span> Previous</a>
+      
+    </div>
+    <div class="page-next">
+      
+      <a href="../sfac/" title="tame sfac" />Next <span>»</span></a>
+      
+    </div>
+  </div>
+
+  <div class="footer">
+    Built with <a href="https://www.mkdocs.org">mkdocs</a> and the <a href="https://github.com/yqshao/mkdocs-flux-theme">flux</a> theme.
+  </div>
+</body>
+</html>

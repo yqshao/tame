@@ -1,0 +1,260 @@
+<!--
+  This Basic theme serves as an example for how to create other
+  themes by demonstrating the features with minimal HTML and CSS.
+  Comments like this will be through the code to explain briefly
+  what each feature is and point you to the MkDocs documentation
+  to find out more.
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!--
+    The page_title contains the title for a page as shown in the navigation.
+    Site name contains the name as defined in the mkdocs.yml
+  -->
+  <title>About TAME - TAME</title>
+
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/pygments.css">
+  <link rel="icon" href="data:,">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400;1,700&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <script src="../js/theme.js"></script>
+
+  <script>
+    $(document).ready(function(){
+          $('table').wrap('<div class="table-wrapper"></div>');
+    });
+  </script>
+
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+</head>
+
+<body>
+  <header class="header">
+    <ul>
+      <li id="logo">
+        <a href="..">TAME</a>
+      </li>
+      
+      
+  <li  class="tab" >
+    <a href=".." class="">
+      Home
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../recipe/overview/">
+      Recipes
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../lib/overview/">
+      Library
+    </a>
+  </li>
+
+      
+      
+  
+  <li class="active tab" >
+    <a href="./">
+      About
+    </a>
+  </li>
+
+      
+      <li class="tools">
+        
+          <a id="nav-toggle" class="tool" onclick="nav_toggle()">
+        
+          <svg><use xlink:href="../svg/sprite.svg#menu-2"></use></svg>
+        </a>
+        <script>
+           function nav_toggle() {
+               var bar = document.getElementById("tab-bar");
+               if (bar.style.display === "none") {
+                   bar.style.display = "block";
+               } else {
+                   bar.style.display = "none";
+               }
+           }
+          function nav_reset() {
+              var bar = document.getElementById("tab-bar");
+              if (window.innerWidth>950){
+                  bar.style.display = "block";
+              } else {
+                  bar.style.display = "none";
+              }
+          }
+          window.onresize = nav_reset;
+        </script>
+        
+        <a class="tool" href="https://github.com/yqshao/tame">
+          <svg><use xlink:href="../svg/sprite.svg#brand-github"></use></svg>
+          <span>yqshao/tame</span>
+        </a>
+        
+      </li>
+    </ul>
+  </header>
+
+
+  <div id="main">
+    <div id="tab-bar">
+      <ul>
+      
+       
+  <li  class="tab" >
+    <a href=".." class="">
+      Home
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../recipe/overview/">
+      Recipes
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../lib/overview/">
+      Library
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li class="active tab" >
+    <a href="./">
+      About
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+                 
+                   
+    <li class="active">
+      <a href="./" class="">
+        About TAME
+      </a>
+    </li>
+
+                 
+                   
+    <li >
+      <a href="../contributing/" class="">
+        Contributing
+      </a>
+    </li>
+
+                 
+               
+             </ul>
+           </div>
+         
+      
+      </ul>
+    </div>
+
+    <div id="content">
+      <h1 id="about-tame">About TAME</h1>
+<p>TAME (Trajectory Analysis Made Easy) was built by Yunqi Shao at Uppsala
+Unversity.</p>
+<p>The program was inspired by Matti Hellström's (in-house) analysis code for MD
+trajectories, which has a much flexible way to define groups of atoms, and made
+available a wide range of structural and dynamic properties (lifetime of
+hydrogen bonds, diffusion of reactive species like hydroxyl ions, to name a
+few). Despite its high performance and flexibility, the syntax was a bit tricky
+to grasp and the program was written in C++, both made it hard to extend the
+code.</p>
+<p>Such difficulties hindered us when we start develop new gauges to the MD
+trajectories, for instance, the cutoff-separated distinct diffusion
+coefficients. We therefore developed a new set of tools such that the analysis
+can be written in the more accessible language of Numpy arrays. The result was
+TAME. The first prototype of the code was developed by Yunqi Shao, with the help
+from Supho Phunnarungsi and Harish Gudla.</p>
+<h2 id="similar-packages">Similar packages</h2>
+<p>Below is a list of packages that provides similar functionalities as TAME.</p>
+<ul>
+<li><a href="https://z-laboratory.github.io/LiquidLib/">LiquidLib</a> by Z Lab </li>
+<li><a href="https://www.mdanalysis.org/">MDAnalysis</a></li>
+<li><a href="https://www.mdtraj.org">MDTraj</a></li>
+<li><a href="http://www.travis-analyzer.de/">TRAVIS</a></li>
+</ul>
+    </div>
+
+  </div>
+
+  <div class="page">
+    <div class="page-prev">
+      
+      <a href="../lib/2d_rdf/" title="2D RDF"><span>«</span> Previous</a>
+      
+    </div>
+    <div class="page-next">
+      
+      <a href="../contributing/" title="Contributing" />Next <span>»</span></a>
+      
+    </div>
+  </div>
+
+  <div class="footer">
+    Built with <a href="https://www.mkdocs.org">mkdocs</a> and the <a href="https://github.com/yqshao/mkdocs-flux-theme">flux</a> theme.
+  </div>
+</body>
+</html>

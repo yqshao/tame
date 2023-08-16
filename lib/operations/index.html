@@ -1,0 +1,260 @@
+<!--
+  This Basic theme serves as an example for how to create other
+  themes by demonstrating the features with minimal HTML and CSS.
+  Comments like this will be through the code to explain briefly
+  what each feature is and point you to the MkDocs documentation
+  to find out more.
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!--
+    The page_title contains the title for a page as shown in the navigation.
+    Site name contains the name as defined in the mkdocs.yml
+  -->
+  <title>Operations - TAME</title>
+
+  <link rel="stylesheet" href="../../css/theme.css">
+  <link rel="stylesheet" href="../../css/pygments.css">
+  <link rel="icon" href="data:,">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400;1,700&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    $(document).ready(function(){
+          $('table').wrap('<div class="table-wrapper"></div>');
+    });
+  </script>
+
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+</head>
+
+<body>
+  <header class="header">
+    <ul>
+      <li id="logo">
+        <a href="../..">TAME</a>
+      </li>
+      
+      
+  <li  class="tab" >
+    <a href="../.." class="">
+      Home
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../../recipe/overview/">
+      Recipes
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../overview/">
+      Library
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../../about/">
+      About
+    </a>
+  </li>
+
+      
+      <li class="tools">
+        
+          <a id="nav-toggle" class="tool lonely" onclick="nav_toggle()">
+        
+          <svg><use xlink:href="../../svg/sprite.svg#menu-2"></use></svg>
+        </a>
+        <script>
+           function nav_toggle() {
+               var bar = document.getElementById("tab-bar");
+               if (bar.style.display === "none") {
+                   bar.style.display = "block";
+               } else {
+                   bar.style.display = "none";
+               }
+           }
+          function nav_reset() {
+              var bar = document.getElementById("tab-bar");
+              if (window.innerWidth>950){
+                  bar.style.display = "block";
+              } else {
+                  bar.style.display = "none";
+              }
+          }
+          window.onresize = nav_reset;
+        </script>
+        
+        <a class="tool" href="https://github.com/yqshao/tame">
+          <svg><use xlink:href="../../svg/sprite.svg#brand-github"></use></svg>
+          <span>yqshao/tame</span>
+        </a>
+        
+      </li>
+    </ul>
+  </header>
+
+
+  <div id="main">
+    <div id="tab-bar">
+      <ul>
+      
+       
+  <li  class="tab" >
+    <a href="../.." class="">
+      Home
+    </a>
+  </li>
+
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../../recipe/overview/">
+      Recipes
+    </a>
+  </li>
+
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../overview/">
+      Library
+    </a>
+  </li>
+
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../../about/">
+      About
+    </a>
+  </li>
+
+         
+      
+      </ul>
+    </div>
+
+    <div id="content">
+      <h1 id="operations">Operations</h1>
+<p>TAME takes advantage of established libraries for heavy numerical tasks.
+Currently, the computations are performed with the Numpy library. Other
+computation backends might be implemented in hte future.</p>
+<div class="admonition danger">
+<p class="admonition-title">documentation in construction</p>
+<p>The documentation now contains an <strong>incomplete</strong> list of available
+operations in TAME, with very brief introductions of what they do,
+a more detailed API documentation should be available later.</p>
+</div>
+<h2 id="time-dependent-operations">Time-dependent Operations</h2>
+<p>Below lists operations that are time-dependent, which means the value of each
+frame depend on previous frames.</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tm.op.unwrap</code></td>
+<td>unwraps the coordinate <sup id="fnref:unwrap"><a class="footnote-ref" href="#fn:unwrap">1</a></sup></td>
+</tr>
+</tbody>
+</table>
+<h2 id="basic-functions">Basic Functions</h2>
+<p>The below functions are basic mathematical operations, those functions are
+also defined as python operators between <code>tm.FrameArray</code>s.</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>syntax</th>
+<th>operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tm.plus</code></td>
+<td><code>a+b</code></td>
+<td>addition</td>
+</tr>
+<tr>
+<td><code>tm.minus</code></td>
+<td><code>a-b</code></td>
+<td>subtraction</td>
+</tr>
+<tr>
+<td><code>tm.product</code></td>
+<td><code>a*b</code></td>
+<td>multiplication</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:unwrap">
+<p>TAME unwraps the trajectory using the minimal displacement vector at each
+time step, to avoid possible artifact when unwrapping constant-pressure
+simulations, which is discussed by von Bülow <em>et al.</em> in
+detail.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>&#160;<a class="footnote-backref" href="#fnref:unwrap" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p><sup>1</sup> S. von Bülow, J.T. Bullerjahn, and G. Hummer, “<a href="https://doi.org/10.1063/5.0008316">Systematic errors in diffusion coefficients from long-time molecular dynamics simulations at constant pressure</a>,” J. Chem. Phys. <strong>153</strong>, 021101 (2020).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </div>
+
+  </div>
+
+  <div class="page">
+    <div class="page-prev">
+      
+    </div>
+    <div class="page-next">
+      
+    </div>
+  </div>
+
+  <div class="footer">
+    Built with <a href="https://www.mkdocs.org">mkdocs</a> and the <a href="https://github.com/yqshao/mkdocs-flux-theme">flux</a> theme.
+  </div>
+</body>
+</html>

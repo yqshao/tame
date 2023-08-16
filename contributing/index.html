@@ -1,0 +1,301 @@
+<!--
+  This Basic theme serves as an example for how to create other
+  themes by demonstrating the features with minimal HTML and CSS.
+  Comments like this will be through the code to explain briefly
+  what each feature is and point you to the MkDocs documentation
+  to find out more.
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!--
+    The page_title contains the title for a page as shown in the navigation.
+    Site name contains the name as defined in the mkdocs.yml
+  -->
+  <title>Contributing - TAME</title>
+
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/pygments.css">
+  <link rel="icon" href="data:,">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400;1,700&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <script src="../js/theme.js"></script>
+
+  <script>
+    $(document).ready(function(){
+          $('table').wrap('<div class="table-wrapper"></div>');
+    });
+  </script>
+
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+</head>
+
+<body>
+  <header class="header">
+    <ul>
+      <li id="logo">
+        <a href="..">TAME</a>
+      </li>
+      
+      
+  <li  class="tab" >
+    <a href=".." class="">
+      Home
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../recipe/overview/">
+      Recipes
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../lib/overview/">
+      Library
+    </a>
+  </li>
+
+      
+      
+  
+  <li class="active tab" >
+    <a href="../about/">
+      About
+    </a>
+  </li>
+
+      
+      <li class="tools">
+        
+          <a id="nav-toggle" class="tool" onclick="nav_toggle()">
+        
+          <svg><use xlink:href="../svg/sprite.svg#menu-2"></use></svg>
+        </a>
+        <script>
+           function nav_toggle() {
+               var bar = document.getElementById("tab-bar");
+               if (bar.style.display === "none") {
+                   bar.style.display = "block";
+               } else {
+                   bar.style.display = "none";
+               }
+           }
+          function nav_reset() {
+              var bar = document.getElementById("tab-bar");
+              if (window.innerWidth>950){
+                  bar.style.display = "block";
+              } else {
+                  bar.style.display = "none";
+              }
+          }
+          window.onresize = nav_reset;
+        </script>
+        
+        <a class="tool" href="https://github.com/yqshao/tame">
+          <svg><use xlink:href="../svg/sprite.svg#brand-github"></use></svg>
+          <span>yqshao/tame</span>
+        </a>
+        
+      </li>
+    </ul>
+  </header>
+
+
+  <div id="main">
+    <div id="tab-bar">
+      <ul>
+      
+       
+  <li  class="tab" >
+    <a href=".." class="">
+      Home
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../recipe/overview/">
+      Recipes
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../lib/overview/">
+      Library
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li class="active tab" >
+    <a href="../about/">
+      About
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+                 
+                   
+    <li >
+      <a href="../about/" class="">
+        About TAME
+      </a>
+    </li>
+
+                 
+                   
+    <li class="active">
+      <a href="./" class="">
+        Contributing
+      </a>
+    </li>
+
+                 
+               
+             </ul>
+           </div>
+         
+      
+      </ul>
+    </div>
+
+    <div id="content">
+      <h1 id="contributing">Contributing</h1>
+<p>Contributions in the form of issues, bug reports and extension of
+functionalities are welcome. The development process of TAME is tracked with
+<a href="https://github.com/teoroo-cmc/tame">Github Issues</a> and the long-term roadmap
+ can be found at <a href="https://github.com/orgs/teoroo-cmc/projects/2">Github
+Project</a>. If you would like to
+request or implement new features, you are suggested to open an issue to discuss
+it or contact the core developer (Yunqi Shao). Below are some resources if you
+would like to help with the development of TAME.</p>
+<p><strong>Code of conduct</strong>: be respectful to each other.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>The easiest way to try TAME is with its CodeSpace with pre-installed
+dependencies ready for testing and development, the development environment can
+be used in the browser without any installation, or with your own editor. Below
+are the instructions for those wish to set up a development environment
+<strong>locally</strong>.</p>
+<h3 id="environment-preparation">Environment preparation</h3>
+<p>To clone the repository and install the necessary dependencies:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone
+<span class="c1"># it&#39;s recommended to separate your development environments, </span>
+<span class="c1"># here we use the most readily available venv</span>
+python<span class="w"> </span>venv<span class="w"> </span>~/
+pip<span class="w"> </span>install
+</code></pre></div>
+<p>You can verify the installation by runninng the unit test:</p>
+<div class="highlight"><pre><span></span><code>pytest<span class="w"> </span>
+</code></pre></div>
+<h3 id="editor-setup-with-vs-code">Editor setup with VS Code</h3>
+<p>When contributing to the code please conform to the coding conventions (below)
+to minimize friction. Those are automatically set up if you edit the source code
+using the VS Code editor. The configuration includes:</p>
+<ul>
+<li>Code formatting for Python and Markdown;</li>
+<li>Local service for documentation building and preview.</li>
+</ul>
+<p>To make sure that VSCode recognize the virtual environment you created, open the
+command palette (Ctrl-Shift-P or F1); type and select
+<code>Python: Select Interpreter</code> and find your environment. Doing so makes sure that
+whenever you open the project, the correct Python is used.</p>
+<h2 id="coding-conventions">Coding conventions</h2>
+<h3 id="dependencies">Dependencies</h3>
+<p>Basic requirements (numpy, click, etc) are specified in <code>setup.py</code>, version
+numbers could be given as the <code>&gt;=old.ver.that.works</code>, and both old and new
+versions should be tested in the CI process.</p>
+<p>Development and documentation building requirements are fixed with exact version
+numbers. Versions may be changed if new features becomes desirable, bugs are
+found, or infrequently between version changes.</p>
+<h3 id="formatting">Formatting</h3>
+<p>Python code, both in source and documentation/notebooks, should be formatted
+with <a href="https://github.com/psf/black">black</a> by default. This will be checked upon
+commit and pull requests. Markdown for documentation should be formatted
+with the <a href="https://github.com/DavidAnson/markdownlint">markdownlint</a>.</p>
+<h3 id="documentation">Documentation</h3>
+<p>The Python classes and functions should be documentated according to the <a href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google
+stlye
+guide</a>.
+New recipes should be supplied with corresponding references and equations
+whenever necessary.</p>
+<h3 id="versioning">Versioning</h3>
+<p>Versioning is determined according to the <a href="https://peps.python.org/pep-0440/">PEP
+440</a> convention. Specifically in the form:
+<code>X.Y.Z(.suffix)</code>, where X is the major release, Y is the minor release and Z is
+the micro release. X is reserved for major milestones in the project roadmap, Y
+for the implementation of new features, and Z for the small bug fixes.</p>
+<p>The main branch should be named as X.Y.Z.dev, after the next release number.
+Developmental or pre releases may be tagged for internal usage (in connection
+with publication). <code>CHANGELOG.md</code> should be updated between version changes.</p>
+    </div>
+
+  </div>
+
+  <div class="page">
+    <div class="page-prev">
+      
+      <a href="../about/" title="About TAME"><span>«</span> Previous</a>
+      
+    </div>
+    <div class="page-next">
+      
+    </div>
+  </div>
+
+  <div class="footer">
+    Built with <a href="https://www.mkdocs.org">mkdocs</a> and the <a href="https://github.com/yqshao/mkdocs-flux-theme">flux</a> theme.
+  </div>
+</body>
+</html>

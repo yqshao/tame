@@ -1,0 +1,389 @@
+<!--
+  This Basic theme serves as an example for how to create other
+  themes by demonstrating the features with minimal HTML and CSS.
+  Comments like this will be through the code to explain briefly
+  what each feature is and point you to the MkDocs documentation
+  to find out more.
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!--
+    The page_title contains the title for a page as shown in the navigation.
+    Site name contains the name as defined in the mkdocs.yml
+  -->
+  <title>tame mdc - TAME</title>
+
+  <link rel="stylesheet" href="../../css/theme.css">
+  <link rel="stylesheet" href="../../css/pygments.css">
+  <link rel="icon" href="data:,">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400;1,700&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    $(document).ready(function(){
+          $('table').wrap('<div class="table-wrapper"></div>');
+    });
+  </script>
+
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+</head>
+
+<body>
+  <header class="header">
+    <ul>
+      <li id="logo">
+        <a href="../..">TAME</a>
+      </li>
+      
+      
+  <li  class="tab" >
+    <a href="../.." class="">
+      Home
+    </a>
+  </li>
+
+      
+      
+  
+  <li class="active tab" >
+    <a href="../overview/">
+      Recipes
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../../lib/overview/">
+      Library
+    </a>
+  </li>
+
+      
+      
+  
+  <li  class="tab" >
+    <a href="../../about/">
+      About
+    </a>
+  </li>
+
+      
+      <li class="tools">
+        
+          <a id="nav-toggle" class="tool" onclick="nav_toggle()">
+        
+          <svg><use xlink:href="../../svg/sprite.svg#menu-2"></use></svg>
+        </a>
+        <script>
+           function nav_toggle() {
+               var bar = document.getElementById("tab-bar");
+               if (bar.style.display === "none") {
+                   bar.style.display = "block";
+               } else {
+                   bar.style.display = "none";
+               }
+           }
+          function nav_reset() {
+              var bar = document.getElementById("tab-bar");
+              if (window.innerWidth>950){
+                  bar.style.display = "block";
+              } else {
+                  bar.style.display = "none";
+              }
+          }
+          window.onresize = nav_reset;
+        </script>
+        
+        <a class="tool" href="https://github.com/yqshao/tame">
+          <svg><use xlink:href="../../svg/sprite.svg#brand-github"></use></svg>
+          <span>yqshao/tame</span>
+        </a>
+        
+      </li>
+    </ul>
+  </header>
+
+
+  <div id="main">
+    <div id="tab-bar">
+      <ul>
+      
+       
+  <li  class="tab" >
+    <a href="../.." class="">
+      Home
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li class="active tab" >
+    <a href="../overview/">
+      Recipes
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+                 
+                   
+    <li >
+      <a href="../overview/" class="">
+        Overview
+      </a>
+    </li>
+
+                 
+                   
+  <a class="nav-title" > Dynamics </a>
+  
+    
+    <li >
+      <a href="../onsager/" class="">
+        tame onsager
+      </a>
+    </li>
+
+  
+    
+    <li class="active">
+      <a href="./" class="">
+        tame mdc
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../pmsd/" class="">
+        tame pmsd
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../jacf/" class="">
+        tame jacf
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../persist/" class="">
+        tame persist
+      </a>
+    </li>
+
+  
+
+                 
+                   
+  <a class="nav-title" > Structure </a>
+  
+    
+    <li >
+      <a href="../rdf/" class="">
+        tame rdf
+      </a>
+    </li>
+
+  
+    
+    <li >
+      <a href="../sfac/" class="">
+        tame sfac
+      </a>
+    </li>
+
+  
+
+                 
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../../lib/overview/">
+      Library
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+       
+  
+  <li  class="tab" >
+    <a href="../../about/">
+      About
+    </a>
+  </li>
+
+         
+           <div class="nav-bar">
+             <ul>
+               
+             </ul>
+           </div>
+         
+      
+      </ul>
+    </div>
+
+    <div id="content">
+      <h1 id="mean-displacement-correlation">Mean Displacement Correlation</h1>
+<p>This command computes the mean displacement correlation (MDC) for the
+determination of diffusion coefficients.</p>
+<p>When a single species is specified in the tag, the mean squared displacement
+(MSD) of individual particles are computed which correspond to self diffusion
+coefficients <span class="arithmatex">\(D^{\mathrm{s}}\)</span>. When two are specified, the MDC between two
+displacements are computed which correspond to distinct diffusion coefficients
+<span class="arithmatex">\(D^{\mathrm{d}}\)</span>.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+D^\mathrm{s}_{\alpha} &amp;= \lim_{t \to \infty}
+\frac{1}{3tN} \left [ \sum_i \left\langle
+  ||\Delta\mathbf{r}_{i,\alpha}(t)||^2
+\right\rangle  \right]\\
+D^\mathrm{d}_{\alpha\beta} &amp;= \lim_{t \to \infty}
+\frac{1}{3tN} \left [ \sum_i \sum_{j\ne i}  \left\langle
+  \Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t)
+\right\rangle \right]
+\end{aligned}
+\]</div>
+<p>In addition, distinct diffusion can be combined with a definition of persistence
+to get the pairing contribution of the diffusion coefficients according to the
+following equation:<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<div class="arithmatex">\[ D^\mathrm{d, pairing}_{\alpha\beta} = \lim_{t \to \infty}
+\frac{1}{3tN} \left [ \sum_i \sum_{j\ne i}  \left\langle
+\Delta\mathbf{r}_{i,\alpha}(t) \cdot \Delta\mathbf{r}_{j,\beta}(t) \cdot
+f(r_{ij};s))\right\rangle \right] \]</div>
+<p>, where <span class="arithmatex">\(f(r_{ij}; s)\)</span> is a function related to the persistence time of the
+pair, of which different definitions exist, to compute the distinct diffusion
+coefficient for pairs, use a tag such as <code>'3;4;SSP:3.0,4.0'</code>, available
+definitions of the persistence function can be found in the <a href="../persist/#Persistence time definitions"><code>tame
+persist</code></a> documentation. This tag also
+outputs the persistence time (as the count of alive pairs) and the pairing
+distribution at each <span class="arithmatex">\(t\)</span> value, where <span class="arithmatex">\(s=t\)</span>. Care should be taken when
+interpreting the values, the point estimation of <span class="arithmatex">\(\mathrm{MDC}(t)/3tN\)</span> or its
+fitted value is only meaningful if the persistence time converges <strong>and</strong> the
+MDC is linear to time.</p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><span></span><code>tame<span class="w"> </span>mcd<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;4;4&#39;</span><span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;3;4;SSP:3.0,4.0&#39;</span><span class="w"> </span>traj.dump
+</code></pre></div>
+<h2 id="options">Options</h2>
+<table>
+<thead>
+<tr>
+<th>Option [shorthand]</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-top</code></td>
+<td><code>None</code></td>
+<td>Topology file</td>
+</tr>
+<tr>
+<td><code>-dt</code></td>
+<td><code>1</code></td>
+<td>Time step of the trajectory</td>
+</tr>
+<tr>
+<td><code>--seg [-s]</code></td>
+<td><code>5000</code></td>
+<td>Segment length</td>
+</tr>
+<tr>
+<td><code>--format [-f]</code></td>
+<td><code>auto</code></td>
+<td>Trajectory format</td>
+</tr>
+<tr>
+<td><code>--max-dt</code></td>
+<td><code>20</code></td>
+<td>Time window for MDC fitting</td>
+</tr>
+<tr>
+<td><code>--tags [-t]</code></td>
+<td><code>'1'</code></td>
+<td>Tags definitions</td>
+</tr>
+<tr>
+<td><code>--mdc-out</code></td>
+<td><code>mdc</code></td>
+<td>MDC output</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><sup>1</sup> H. Gudla, Y. Shao, S. Phunnarungsi, D. Brandell, and C. Zhang, “<a href="https://doi.org/10.1021/acs.jpclett.1c02474">Importance of the ion-pair lifetime in polymer electrolytes</a>,” J. Phys. Chem. Lett. <strong>12</strong>, 8460–8464 (2021).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </div>
+
+  </div>
+
+  <div class="page">
+    <div class="page-prev">
+      
+      <a href="../onsager/" title="tame onsager"><span>«</span> Previous</a>
+      
+    </div>
+    <div class="page-next">
+      
+      <a href="../pmsd/" title="tame pmsd" />Next <span>»</span></a>
+      
+    </div>
+  </div>
+
+  <div class="footer">
+    Built with <a href="https://www.mkdocs.org">mkdocs</a> and the <a href="https://github.com/yqshao/mkdocs-flux-theme">flux</a> theme.
+  </div>
+</body>
+</html>
