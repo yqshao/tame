@@ -1,49 +1,61 @@
-site_name: TAME Documentation
+site_name: TAME
 site_url: https://yqshao.github.io/tame
 repo_url: https://github.com/yqshao/tame
 repo_name: yqshao/tame
+
 nav:
   - Home: index.md
   - Recipes:
       - Overview: recipe/overview.md
       - Dynamics:
-        - tame mdc: recipe/mdc.md
-        - tame jacf: recipe/jacf.md
-        - tame onsager: recipe/onsager.md
-        - tame persist: recipe/persist.md
-        - tame pmsd: recipe/pmsd.md
+          - tame onsager: recipe/onsager.md
+          - tame mdc: recipe/mdc.md
+          - tame pmsd: recipe/pmsd.md
+          - tame jacf: recipe/jacf.md
+          # - tame vacf: recipe/vacf.md
+          - tame persist: recipe/persist.md
       - Structure:
-        - tame rdf: recipe/rdf.md
-        - tame sfac: recipe/sfac.md
+          - tame rdf: recipe/rdf.md
+          - tame sfac: recipe/sfac.md
   - Library:
       - Overview: lib/overview.md
       - Data types:
-        - tame.Trajectory: lib/trajectory.md
-        - tame.Operation: lib/operation.md
+          - tame.Trajectory: lib/trajectory.md
+          - tame.Operation: lib/operation.md
       - Modules:
-        - tame.io: lib/io.md
-        - tame.ops: lib/ops.md
-        - tame.units: lib/units.md
+          - tame.io: lib/io.md
+          - tame.ops: lib/ops.md
+          - tame.units: lib/units.md
       - Examples:
-        - Hydroxyl ion: lib/hydroxyl.md
-        - 2D RDF: lib/2d_rdf.md
+          - Hydroxyl ion: lib/hydroxyl.md
+          - 2D RDF: lib/2d_rdf.md
   - About:
-    - About TAME: about.md
-    - Contributing: contributing.md
+      - About TAME: about.md
+      - Contributing: contributing.md
+
 plugins:
-  - mike
   - bibtex:
       bib_file: "docs/references.bib"
+      csl_file: "docs/jcp.csl"
+
 markdown_extensions:
-  - toc:
-      toc_depth: 3
   - admonition
-  - attr_list
   - footnotes
-extra:
-  version:
-    provider: mike
-extra_css:
-  - css/extra.css
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.tilde
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+
+theme:
+  name: flux
+
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

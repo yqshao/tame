@@ -23,11 +23,3 @@ tame jacf -c 3 -a 4 traj.dump
 | `--temp [-T]`      | `293`   | Temperature [K]                                    |
 | `--jacf-out`       | `jacf`  | JACF output                                        |
 | `--cond-out`       | `cond`  | Conductivity output                                |
-
-## Ion definitions
-
-!!! warning "Partially implemented"
-
-    Currently, only monovalent ions are supported for this command. The ion definition
-    might be improved in the future to support more flexible definitions (multiple ionic 
-    species and multivalent ions) 

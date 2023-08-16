@@ -2,15 +2,18 @@
 
 ## Introduction
 
-This is a **work in progress** set of tools to post process MD trajectories,
-mainly aiming for calculating transport properties of electrolyte systems.
+Tame is a set of tools to post process MD trajectories, mainly aiming for
+calculating transport properties of electrolyte systems from time correlation
+functions. File IO is through the [chemfiles] library.
+
+[chemfiles]: https://chemfiles.org/
 
 ## Installation
 
 **with pip**
 
 ``` shell
-   pip install git+https://github.com/Teoroo-CMC/tame.git
+   pip install git+https://github.com/yqshao/tame.git
 ```
 
 **with singularity**
@@ -21,7 +24,7 @@ mainly aiming for calculating transport properties of electrolyte systems.
 
 ## Using a recipe
 
-Recipes are organzied in subcommands of the mdppp command, for example, the
+Recipes are organized in subcommands of the `tame` command, for example, the
 following command computes the Green-Kubo conductivity taking element 1 and 2 as
 cation and anion species:
 

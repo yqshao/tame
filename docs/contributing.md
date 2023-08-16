@@ -6,8 +6,8 @@ functionalities are welcome. The development process of TAME is tracked with
  can be found at [Github
 Project](https://github.com/orgs/teoroo-cmc/projects/2). If you would like to
 request or implement new features, you are suggested to open an issue to discuss
-it or contact the core developer (Yunqi Shao, yunqi.shao@kemi.uu.se). Below are
-some resources if you would like to help with the development of TAME.
+it or contact the core developer (Yunqi Shao). Below are some resources if you
+would like to help with the development of TAME.
 
 **Code of conduct**: be respectful to each other.
 
@@ -23,7 +23,7 @@ are the instructions for those wish to set up a development environment
 
 To clone the repository and install the necessary dependencies:
 
-```bash
+``` bash
 git clone
 # it's recommended to separate your development environments, 
 # here we use the most readily available venv

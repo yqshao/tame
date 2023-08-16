@@ -1,3 +1,3 @@
-# TAME: Trajectory Analysis Made Easy 
+# Trajectory Analysis Made Easy
 
-A flexible python pacakge for MD trajectory analysis. 
+A python package for MD trajectory analysis.

@@ -1,45 +1,39 @@
 # Onsager coefficients
 
-Computing the onsager coefficients (RDF).
+This command outputs the displacement time correlation function whose time
+derivatives correspond to the Onsager phenomenological coefficients
+$\Omega_{\alpha\beta}$ between two species $\alpha$ and $\beta$ (specified by
+the tags):
+
+$$
+\begin{aligned}
+\mathrm{corr}_{\alpha\beta}(t)
+&= \left\langle
+    \sum_{ij} \Delta r_{i,\alpha}(t) \cdot \Delta
+    r_{j,\beta}(t)
+    \right\rangle \\
+\Omega_{\alpha\beta}
+&= \lim_{t\to\infty} \frac{\mathrm{corr}_{\alpha\beta}(t)}{6k_{\mathrm{B}}TVN_{\mathrm{A}}t}
+\end{aligned}
+$$
+
+The time correlation function will be printed to the `corr-out` files.
 
 ## Usage
 
-```bash
-tame onsager -t '3,3 3,4' traj.dump
+``` bash
+tame onsager -t '3;3' -t '3;4' ...
 ```
 
 ## Options
 
-| Option [shorthand] | Default | Description                               |
-| ------------------ | ------- | ----------------------------------------- |
-| `-top`             | `None`  | Topology file                             |
-| `-dt`              | `1`     | Time step of the trajectory [ps]          |
-| `--seg [-s]`       | `5000`  | Segment length [ps]                       |
-| `--max-dt`         | `20`    | Time window for correlation function [ps] |
-| `--format [-f]`    | `auto`  | Trajectory format                         |
-| `--rcom`           | `None`  | Remove COM (see [notes](#Notes))          |
-| `--tags [-t]`      | `'1,1'` | Space separated tags                      |
-| `--corr-out`       | `corr`  | Correlation function output               |
-
-## Notes
-
-!!! warning "Partially implemented"
-
-    Currently, the command does not perform fitting and does not output the Onsager coefficients
-    directly.
-
-### Correlation function
-
-The function outputs the displacement correlation function:
-
-$$
-\mathrm{corr}(t) = \langle \sum_i \Delta r_{i,\alpha}(t) \cdot \sum_j \Delta
-r_{j,\beta}(t)\rangle
-$$
-
-with $\alpha$ and $\beta$ specified by the tags.
-
-### `--rcom` option
-
-When specified, remove the center of mass motion of the entire system. A string
-must be supplied with the mass of **all** species, e.g. `--rcom 1:1.008,3:6.941,6:12.010`.
+| Option [shorthand] | Default | Description                          |
+| ------------------ | ------- | ------------------------------------ |
+| `-top`             | `None`  | Topology file                        |
+| `-dt`              | `1`     | Time step of the trajectory          |
+| `--seg [-s]`       | `5000`  | Segment length                       |
+| `--max-dt`         | `20`    | Time window for correlation function |
+| `--format [-f]`    | `auto`  | Trajectory format                    |
+| `--rcom`           | `None`  | Remove centre of mass motion         |
+| `--tag [-t]`       | `'1;1'` | Tags for pairs of atom types         |
+| `--corr-out`       | `corr`  | Correlation function output          |

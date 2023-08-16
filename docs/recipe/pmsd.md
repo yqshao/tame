@@ -25,11 +25,3 @@ tame pmsd -c 3 -a 4 traj.dump
 | `--fit-max`        | `20`    | Maximal time for msd fit [ps]                      |
 | `--pmsd-out`       | `pmsd`  | PMSD output                                        |
 | `--cond-out`       | `cond`  | conductivity output                                |
-
-## Ion definitions
-
-!!! warning "Partially implemented"
-
-    Currently, only monovalent ions are supported for this command. The ion definition
-    might be improved in the future to support more flexible definitions (multiple ionic 
-    species and multivalent ions) 
