@@ -42,7 +42,7 @@ def load_traj(trajectory, topology=None, format='auto'):
     if isinstance(trajectory, str):
         trajectory = [trajectory]
 
-    if format is 'auto':
+    if format == 'auto':
         format = guess_format(trajectory[0])
 
     loader = {
